@@ -1,18 +1,10 @@
-//var renderer = PIXI.autoDetectRenderer(800.600);
+
 var app = new PIXI.Application({width: 800,height: 750});
 app.renderer.backgroundColor = 0xffffff;
 document.body.appendChild(app.view);
 app.renderer.resize(window.innerWidth, window.innerHeight);
 // create the root of the scene graph
 var stage = new PIXI.Container();
-
-// ********************* IMAGES *********************
-var solutionbutton = PIXI.Texture.from('images/nav/solution.svg');
-var visionbutton = PIXI.Texture.from('images/nav/vision.svg');
-var joinusbutton = PIXI.Texture.from('images/nav/joinus.svg');
-var storybutton = PIXI.Texture.from('images/nav/story.svg');
-var milestonebutton = PIXI.Texture.from('images/nav/milestones.svg');
-
 
 // *****************************FRAMES*******************
 
@@ -34,41 +26,20 @@ frame1.x=0;
 frame1.y=110;
 app.stage.addChild(frame1);
 
+var upp=new PIXI.Sprite(up);
+upp.buttonMode=true
+upp.x=300;
+upp.y=400;
+upp.interactive=true;
+upp.click=function(){console.log('fuck')};
 
-var frame2=new PIXI.Sprite(f2);
-frame2.x=0;
-frame2.y=110;
-
-
-var frame3=new PIXI.Sprite(f3);
-frame3.x=0;
-frame3.y=110;
-
-
-var frame4=new PIXI.Sprite(f4);
-frame4.x=0;
-frame4.y=110;
-
-
-var frame5=new PIXI.Sprite(f5);
-frame5.x=0;
-frame5.y=110;
-
-
-
-/*var message = new PIXI.Text('Solution');
-    message.x = 60;
-    message.y = 0;*/
-
-    var noop = function () {
+var noop = function () {
     console.log('click');
     app.stage.removeChild(frame2,frame4,frame5,frame3);
     app.stage.addChild(frame1);
     var testt= new PIXI.Sprite(ss);
     var pic= new PIXI.Sprite(img);
     var txtt=new PIXI.Sprite(txt);
-    var upp=new PIXI.Sprite(up);
-    upp.x=300;upp.y=400;
     txtt.x=200;txtt.y=350;
     pic.x=200;pic.y=150;
     testt.y=50
@@ -76,22 +47,48 @@ frame5.y=110;
     frame1.addChild(testt,pic,txtt,upp);
 };
 
+
+// ***************FRAME 2********************
+
+var frame2=new PIXI.Sprite(f2);
+frame2.x=0;
+frame2.y=110;
+
+// ************************FRAME 3*****************
+var frame3=new PIXI.Sprite(f3);
+frame3.x=0;
+frame3.y=110;
+
+// ****************FRAME 4 *********************
+var frame4=new PIXI.Sprite(f4);
+frame4.x=0;
+frame4.y=110;
+
+// ****************FRAME 5*********************
+var frame5=new PIXI.Sprite(f5);
+frame5.x=0;
+frame5.y=110;
+
+
+// ******************************** NAVIGATION BAR ********************
+
+var solutionbutton = PIXI.Texture.from('images/nav/solution.svg');
+var visionbutton = PIXI.Texture.from('images/nav/vision.svg');
+var joinusbutton = PIXI.Texture.from('images/nav/joinus.svg');
+var storybutton = PIXI.Texture.from('images/nav/story.svg');
+var milestonebutton = PIXI.Texture.from('images/nav/milestones.svg');
+
 var button = new PIXI.Sprite(solutionbutton);
     button.buttonMode = true;
-
-    //button.anchor.set(0.5);
 
     button.position.x = 215;
     button.position.y = 50;
 
-    // make the button interactive...
+
     button.interactive = true;
 
-button.pointerup=noop; // just to test
 button.tap = noop;
 button.click = noop;
-//button.mouseover = function(){app.stage.addChild(message);};
-//button.mouseout = function(){app.stage.removeChild(message);}
 app.stage.addChild(button);
 
 var buttonvi= new PIXI.Sprite(visionbutton);
@@ -131,3 +128,4 @@ buttonmi.position.y=50;
 buttonmi.interactive=true;
 app.stage.addChild(buttonmi);
 buttonmi.click=function(){app.stage.removeChild(frame2,frame1,frame3,frame4);app.stage.addChild(frame5);};
+
