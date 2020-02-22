@@ -31,7 +31,7 @@ upp.buttonMode=true
 upp.x=300;
 upp.y=400;
 upp.interactive=true;
-upp.click=function(){console.log('fuck')};
+
 
 var noop = function () {
     console.log('click');
@@ -53,6 +53,15 @@ var noop = function () {
 var frame2=new PIXI.Sprite(f2);
 frame2.x=0;
 frame2.y=110;
+
+var reqac=PIXI.Texture.from('images/ra.svg');
+var ra= new PIXI.Sprite(reqac);
+ra.buttonMode=true;
+ra.x=300;
+ra.y=400;
+ra.interactive=true;
+frame2.addChild(ra);
+
 
 // ************************FRAME 3*****************
 var frame3=new PIXI.Sprite(f3);
@@ -98,8 +107,7 @@ var buttonvi= new PIXI.Sprite(visionbutton);
     buttonvi.position.y=50;
     buttonvi.interactive=true;
     buttonvi.tap=noop;
-    buttonvi.mouseover = function(){app.stage.addChild(messagevi);
-    };
+    buttonvi.mouseover = function(){app.stage.addChild(messagevi);};
     buttonvi.mouseout = function(){app.stage.removeChild(messagevi);}
     buttonvi.click=function(){app.stage.removeChild(frame1,frame5,frame3,frame4);app.stage.addChild(frame2)}
     app.stage.addChild(buttonvi);
