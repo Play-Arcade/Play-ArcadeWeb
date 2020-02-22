@@ -15,12 +15,18 @@
         width: 100%;
         margin: auto;
       }
-      #canvas-container {
-        margin-top: 50px;
+
+      .header {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
       }
     </style>
   </head>
   <body onload="init();">
+    <div class="header">
+      <img src="resources/logo.svg" alt="Play!Arcade" />
+    </div>
     <div id="canvas-container"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.0.0/pixi.min.js"></script>
     <script src="main.js"></script>

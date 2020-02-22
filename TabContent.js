@@ -58,7 +58,7 @@ function renderTabContent(app) {
   builderDeactive.anchor.set(0, 0);
   builderDeactive.buttonMode = true;
   builderDeactive.interactive = true;
-  builderDeactive.on("click", function() {
+  builderDeactive.on("pointerdown", function() {
     //PLAYER - BUILDER SWITCH
     hideAllContent(app);
     solutionBuilderScreen.visible = true;
@@ -102,7 +102,7 @@ function renderTabContent(app) {
   playerDeactive.anchor.set(1, 0);
   playerDeactive.buttonMode = true;
   playerDeactive.interactive = true;
-  playerDeactive.on("click", function() {
+  playerDeactive.on("pointerdown", function() {
     //PLAYER - BUILDER SWITCH
     hideAllContent(app);
     solutionPlayerScreen.visible = true;

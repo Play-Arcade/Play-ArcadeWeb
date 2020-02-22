@@ -11,7 +11,7 @@ function renderTabs(app) {
   //click handler
   visionIcon.buttonMode = true;
   visionIcon.interactive = true;
-  visionIcon.on("click", function(e) {
+  visionIcon.on("pointerdown", function(e) {
     hideAll();
     showTab("vision");
   });
@@ -40,7 +40,7 @@ function renderTabs(app) {
   //click handler
   solutionIcon.buttonMode = true;
   solutionIcon.interactive = true;
-  solutionIcon.on("click", function(e) {
+  solutionIcon.on("pointerdown", function(e) {
     hideAll();
     showTab("solution");
   });
@@ -69,7 +69,7 @@ function renderTabs(app) {
   //click handler
   storyIcon.buttonMode = true;
   storyIcon.interactive = true;
-  storyIcon.on("click", function(e) {
+  storyIcon.on("pointerdown", function(e) {
     hideAll();
     showTab("story");
   });
@@ -98,7 +98,7 @@ function renderTabs(app) {
   //click handler
   milestonesIcon.buttonMode = true;
   milestonesIcon.interactive = true;
-  milestonesIcon.on("click", function(e) {
+  milestonesIcon.on("pointerdown", function(e) {
     hideAll();
     showTab("milestones");
   });
@@ -129,7 +129,7 @@ function renderTabs(app) {
   //click handler
   joinUsIcon.buttonMode = true;
   joinUsIcon.interactive = true;
-  joinUsIcon.on("click", function(e) {
+  joinUsIcon.on("pointerdown", function(e) {
     hideAll();
     showTab("joinus");
   });
