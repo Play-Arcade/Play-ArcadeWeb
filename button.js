@@ -2,10 +2,15 @@
 var app = new PIXI.Application({width: 800,height: 750});
 app.renderer.backgroundColor = 0xffffff;
 document.body.appendChild(app.view);
-app.renderer.resize(window.innerWidth, window.innerHeight);
 // create the root of the scene graph
 var stage = new PIXI.Container();
 
+var arc=PIXI.Texture.from('images/frame1.svg');
+var arcade = new PIXI.Sprite(arc);
+
+arcade.x=0;
+arcade.y=0;
+app.stage.addChild(arcade);
 // *****************************FRAMES*******************
 
 var f1 = PIXI.Texture.from('images/nav/1.svg');
@@ -107,6 +112,19 @@ frame2.addChild(ra,cards,player,builder);
 var frame3=new PIXI.Sprite(f3);
 frame3.x=0;
 frame3.y=110;
+
+var box=new PIXI.Texture.from('images/textbox1.svg');
+var box2=new PIXI.Texture.from('images/textbox12.svg');
+var textbox1= new PIXI.Sprite(box);
+var textbox2= new PIXI.Sprite(box2);
+
+textbox1.x=0;
+textbox1.y=50;
+
+textbox2.x=0;
+textbox2.y=400;
+
+frame3.addChild(textbox1,textbox2);
 
 // ****************FRAME 4 *********************
 var frame4=new PIXI.Sprite(f4);
