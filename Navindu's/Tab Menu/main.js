@@ -15,13 +15,16 @@ function init() {
   //preload assets
   app.loader.baseUrl = "resources";
   app.loader
-    .add("vision", "Vision.svg")
-    .add("milestones", "Milestones.svg")
-    .add("story", "Story.svg")
-    .add("joinUs", "Join Us.svg")
-    .add("solution", "Solution.svg")
-    .add("visionFrame", "vision-frame.svg")
-    .add("solutionFrame", "solution-frame.svg");
+    .add("vision", "vision/Vision.svg")
+    .add("visionFrame", "vision/vision-frame.svg")
+    .add("solution", "solution/Solution.svg")
+    .add("solutionFrame", "solution/solution-frame.svg")
+    .add("story", "story/Story.svg")
+    .add("storyFrame", "story/story-frame.svg")
+    .add("milestones", "milestones/Milestones.svg")
+    .add("milestonesFrame", "milestones/milestones-frame.svg")
+    .add("joinUs", "joinus/Join Us.svg")
+    .add("joinUsFrame", "joinus/joinus-frame.svg");
   app.loader.load();
 
   //loader onComplete
@@ -29,7 +32,6 @@ function init() {
     console.log(app.loader.resources);
 
     //Tab Icons -------------------------------
-    tabs = new Tabs(app);
-    tabs.render();
+    renderTabs(app);
   });
 }
