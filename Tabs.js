@@ -180,24 +180,27 @@ function renderTabs(app) {
       case "vision":
         visionText.visible = true;
         visionFrame.visible = true;
-        renderTabContent(app, "vision");
+        renderScreen(app, "vision");
         break;
       case "solution":
         solutionText.visible = true;
         solutionFrame.visible = true;
-        renderTabContent(app, "solution");
+        renderScreen(app, "solution");
         break;
       case "story":
         storyText.visible = true;
         storyFrame.visible = true;
+        renderScreen(app, "story");
         break;
       case "milestones":
         milestonesText.visible = true;
         milestonesFrame.visible = true;
+        renderScreen(app, "milestones");
         break;
       case "joinus":
         joinUsText.visible = true;
         joinusFrame.visible = true;
+        renderScreen(app, "joinus");
     }
   }
 }
