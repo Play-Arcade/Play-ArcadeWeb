@@ -111,7 +111,7 @@ function renderTabs(app) {
   app.stage.addChild(milestonesText);
   //frame
   milestonesFrame = PIXI.Sprite.from(
-    app.loader.resources.milestonesFrame.texture
+    app.loader.resources.milestonesFrame.texture,
   );
   milestonesFrame.scale.set(0.7);
   milestonesFrame.anchor.set(0.5, 0);
