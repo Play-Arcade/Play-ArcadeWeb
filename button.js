@@ -167,8 +167,10 @@ buttonvi.buttonMode=true;
 buttonvi.position.x=215;
 buttonvi.position.y=50;
 buttonvi.interactive=true;
-buttonvi.click=function(){app.stage.removeChild(frame2,frame5,frame3,frame4);app.stage.addChild(frame1)}
+buttonvi.click=function(){app.stage.removeChild(frame2,frame5,frame3,frame4);app.stage.addChild(frame1)};
 app.stage.addChild(buttonvi);
+buttonvi.tap=function(){app.stage.removeChild(frame2,frame5,frame3,frame4);app.stage.addChild(frame1)};
+
 
 
 
@@ -180,7 +182,7 @@ button.position.y = 50;
 button.interactive = true;
 button.click=function(){app.stage.removeChild(frame1,frame5,frame3,frame4);app.stage.addChild(frame2)};
 app.stage.addChild(button);
-    
+button.tap=function(){app.stage.removeChild(frame1,frame5,frame3,frame4);app.stage.addChild(frame2)};
 
 var buttonst=new PIXI.Sprite(storybutton);
 buttonst.buttonMode=true;
@@ -189,6 +191,8 @@ buttonst.position.y=50;
 buttonst.interactive=true;
 app.stage.addChild(buttonst);
 buttonst.click=function(){app.stage.removeChild(frame2,frame1,frame5,frame4);app.stage.addChild(frame3);};
+buttonst.tap=function(){app.stage.removeChild(frame2,frame1,frame5,frame4);app.stage.addChild(frame3);};
+
 
 var buttonmi=new PIXI.Sprite(milestonebutton);
 buttonmi.buttonMode=true;
@@ -197,6 +201,7 @@ buttonmi.position.y=50;
 buttonmi.interactive=true;
 app.stage.addChild(buttonmi);
 buttonmi.click=function(){app.stage.removeChild(frame2,frame1,frame3,frame5);app.stage.addChild(frame4);};
+buttonmi.tap=function(){app.stage.removeChild(frame2,frame1,frame3,frame5);app.stage.addChild(frame4);};
 
 var buttonju=new PIXI.Sprite(joinusbutton);
 buttonju.buttonMode=true;
@@ -205,6 +210,9 @@ buttonju.position.y=50;
 buttonju.interactive=true;
 app.stage.addChild(buttonju);
 buttonju.click=function(){app.stage.removeChild(frame2,frame1,frame3,frame4);app.stage.addChild(frame5);};
+buttonju.tap=function(){app.stage.removeChild(frame2,frame1,frame3,frame4);app.stage.addChild(frame5);};
+
+
 
 
 
