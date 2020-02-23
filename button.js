@@ -76,6 +76,7 @@ playerinactive.y=50;
 playerinactive.buttonMode=true;
 playerinactive.interactive=true;
 playerinactive.click=function(){frame2.addChild(cards,builder,player);frame2.removeChild(buildertab);};
+playerinactive.tap=function(){frame2.addChild(cards,builder,player);frame2.removeChild(buildertab);};
 
 buildercard.x=200;
 buildercard.y=150;
@@ -98,12 +99,14 @@ player.interactive=true;
 player.x=300;
 player.y=50;
 player.click=function(){frame2.addChild(cards,builder);frame2.removeChild(buildertab);};
+player.tap=function(){frame2.addChild(cards,builder);frame2.removeChild(buildertab);};
 
 builder.buttonMode=true;
 builder.interactive=true;
 builder.x=400;
 builder.y=50;
 builder.click=function(){frame2.addChild(buildercard,buildertab,playerinactive);frame2.removeChild(cards,player);};
+builder.tap=function(){frame2.addChild(buildercard,buildertab,playerinactive);frame2.removeChild(cards,player);};
 
 frame2.addChild(ra,cards,player,builder);
 
