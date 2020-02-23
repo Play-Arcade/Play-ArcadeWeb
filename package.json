@@ -1,0 +1,13 @@
+{
+  "name": "Play!Arcade Website",
+  "description": "Play!Arcade Website Development",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd server/ && npm start",
+    "heroku-postbuild": "cd server/ && npm install"
+  },
+  "engines": {
+    "npm": "6.4.1",
+    "node": "10.15.1"
+  }
+}
