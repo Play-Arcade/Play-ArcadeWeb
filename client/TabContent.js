@@ -28,7 +28,7 @@ function renderTabContent(app) {
 
   //get updates
   getUpdatesButton = PIXI.Sprite.from(
-    app.loader.resources.getUpdatesButton.texture
+    app.loader.resources.getUpdatesButton.texture,
   );
   getUpdatesButton.x = app.view.width / 2;
   getUpdatesButton.y = 910;
@@ -50,7 +50,7 @@ function renderTabContent(app) {
   solutionPlayerScreen.addChild(playerActive);
   //Builder deactive btn
   builderDeactive = PIXI.Sprite.from(
-    app.loader.resources.builderDeactive.texture
+    app.loader.resources.builderDeactive.texture,
   );
   builderDeactive.x = app.view.width / 2;
   builderDeactive.y = 320;
@@ -94,7 +94,7 @@ function renderTabContent(app) {
   solutionBuilderScreen.addChild(builderActive);
   //Builder deactive btn
   playerDeactive = PIXI.Sprite.from(
-    app.loader.resources.playerDeactive.texture
+    app.loader.resources.playerDeactive.texture,
   );
   playerDeactive.x = app.view.width / 2;
   playerDeactive.y = 320;

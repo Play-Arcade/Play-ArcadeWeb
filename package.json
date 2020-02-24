@@ -1,0 +1,23 @@
+{
+  "name": "Play!ArcadeWebsite",
+  "description": "Play!Arcade Website Development",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd server/ && npm start",
+    "heroku-postbuild": "cd server/ && npm install",
+    "lint-client": "npx eslint client/ -c .eslintrc --ext js",
+    "lint-server": "npx eslint server/ -c .eslintrc --ext js --ignore-pattern node_modules/",
+    "lint-all": "npx eslint client/ -c .eslintrc --ext js && npx eslint server/ -c .eslintrc --ext js --ignore-pattern node_modules/"
+  },
+  "engines": {
+    "npm": "6.4.1",
+    "node": "10.15.1"
+  },
+  "dependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1"
+  }
+}
