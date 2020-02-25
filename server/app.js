@@ -20,15 +20,82 @@ app.use("/api", indexRouter);
 
 //defining schema and root for graphql
 var schema = buildSchema(
-  `type Query {
-    hello: String
-  }`
+  `
+  type Person {
+    # fields relating to all parties
+    id: Int
+    name: String
+    email: String
+
+    # fields relating to those who indicate
+    # they are a professional or student
+    isProfessional: Boolean
+    isStudent: Boolean
+    occupation: String
+    yearsExperience: Int
+    stackItems: [String]
+    whyGames: String
+    buildDesires: [String]
+    hasDoneGameJam: Boolean
+    dedicationLevel: String
+  }
+
+  type Query {
+    getPerson(id: Int!): Person
+  }
+
+  type Mutation {
+    addPerson(name: String!, email: String!, isProfessional: Boolean!, isStudent: Boolean!,
+      occupation: String, yearsExperience: Int, stackItems: [String], whyGames: String, 
+      buildDesires: [String], hasDoneGameJam: Boolean, dedicationLevel: String): Person
+    updateName(id: Int!, name: String!): Person
+    updateEmail(id: Int!, email: String!): Person
+  }
+  `
 );
 
+// used in place of a real database
+var fakeDatabase = {};
+
+// tells the queries how to manipulate data before query return
 var root = {
-  hello: () => {
-    return 'Hello world!';
+  addPerson: ({name, email, isProfessional, isStudent, occupation, yearsExperience,
+    stackItems, whyGames, buildDesires, hasDoneGameJam, dedicationLevel}) => {
+
+    // THIS WILL EVENTUALLY HAVE TO BE UPDATED TO A MORE SECURE
+    // RANDOM INT METHOD THAT CHECKS FOR DUPLICATES BY QUERYING
+    // AN ACUTAL DATABASE
+    var id = Math.floor(Math.random() * 10000);
+
+    // check if professional or student
+    if(isProfessional || isStudent) {
+      fakeDatabase[id] = {id, name, email, isProfessional, isStudent, occupation,
+      yearsExperience, stackItems, whyGames, buildDesires, hasDoneGameJam, dedicationLevel};
+    } else {
+      fakeDatabase[id] = {id, name, email, isProfessional, isStudent};
+    } // if the user is a professional or student, add extra fields, else don't
+
+    return fakeDatabase[id];
   },
+  updateName: ({id, name}) => {
+    if(!fakeDatabase[id])
+      console.log("id does not exist.");
+    else 
+    fakeDatabase[id].name = name;
+
+    return fakeDatabase[id];
+  },
+  updateEmail: ({id, email}) => {
+    if(fakeDatabase[id])
+      fakeDatabase[id].email = email;
+    else 
+      console.log("id does not exist.");
+
+      return fakeDatabase[id];
+  },
+  getPerson: ({id}) => {
+    return fakeDatabase[id];
+  }
 };
 
 app.use("/graphql", graphql({

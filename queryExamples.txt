@@ -1,0 +1,38 @@
+// POST a person to the database
+// name is nathan, email is asfjhkdg
+// id is generated on call
+mutation {
+    addPerson(name: "nathan", email: "asfjhkdg", isProfessional: false,
+    isStudent: false) {
+        name, email, id
+    }
+}
+
+// POST for a student
+mutation {
+    addPerson(name: "nathan", email: "asfjhkdg", isProfessional: false,
+    isStudent: true, occupation: "UGA", yearsExperience: 2, 
+    stackItems: ["JavaScript, WebGL"], whyGames:"theyre fun!", 
+    buildDesires: "Hyper-Casual", hasDoneGameJam: false, dedicationLevel: "hobbyist") {
+        name, email, id, isProfessional, isStudent, occupation, yearsExperience,
+    		stackItems, whyGames, buildDesires, hasDoneGameJam, dedicationLevel
+    }
+}
+
+// GET a person from the database
+// desired person's id is 6289
+{
+  getPerson(id: 6289) {
+    name, email, isStudent, hasDoneGameJam
+  }
+}
+
+// PATCH (?) onto an existing database entity
+// updates email by id
+// one of these also exists for name but i'm not gonna
+// make an example because they're basically the same
+mutation {
+    updateEmail(id: 4694, email: "asfjhkdg") {
+        name, email, id
+    }
+}
