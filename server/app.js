@@ -32,7 +32,10 @@ app.use("/api", indexRouter);
 
 // Render web page
 app.use(express.static(path.join(__dirname, "../")));
-app.get("/*", (req, res) => {
+app.get("*", function(request, response) {
+  response.redirect("https://" + request.headers.host + request.url);
+});
+app.get("https://*", (req, res) => {
   res.sendFile(path.join(__dirname, "../index.html"));
 });
 
