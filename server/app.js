@@ -36,7 +36,7 @@ app.get("*", function(request, response) {
   response.redirect("https://" + request.headers.host + request.url);
 });
 app.get("https://*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+  res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
 module.exports = app;
