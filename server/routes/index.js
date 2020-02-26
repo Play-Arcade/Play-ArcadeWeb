@@ -8,7 +8,7 @@ var mong = require("mongoose");
 var userSchema = new mong.Schema({
   Name: { type: String, required: true },
   Email: { type: String, required: true },
-  Password: { type: String, required: true }
+  Password: { type: String, required: true },
 });
 
 var userModel = mong.model("User", userSchema);
@@ -21,27 +21,26 @@ router.get("/", function(req, res, next) {
 router.post("/newuser", (req, res) => {
   const cred = req.body;
 
+  // eslint-disable-next-line max-len
   const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (regex.test(cred.email.toLowerCase)){
+  if (regex.test(cred.email.toLowerCase)) {
     bcrypt.hash(cred.Password, 10, (e, hash) => {
       if (e) {
         error("error while hashing password", e);
         res.sendStatus(500);
-      }
-      else{
+      } else {
         const newUser = new userModel({
           Name: cred.Name,
           Email: cred.Email,
-          Password: hash
+          Password: hash,
         });
 
         newUser.save(e => {
           if (e) {
             console.error("error while saving user to database", e);
             res.sendStatus(500);
-          }
-          else {
-            const response = {user: newUser}; // add tokens once implemented
+          } else {
+            const response = { user: newUser }; // add tokens once implemented
             res.json(response);
           }
         });
@@ -56,26 +55,23 @@ router.post("/signin", (req, res) => {
     if (e) {
       console.error("error while finding user", e);
       res.sendStatus(500);
-    }
-    else {
+    } else {
       if (user) {
         bcrypt.compare(cred.Password, user.Password).then(same => {
           if (same) {
-            const response = {user: user}
+            const response = { user: user };
             res.json(user);
-          }
-          else {
+          } else {
             console.error("user password is incorrect");
             res.json({
-              error_type: "password"
+              error_type: "password",
             });
           }
         });
-      }
-      else {
+      } else {
         console.error("no such user exists");
         res.json({
-          error_type: "username"
+          error_type: "username",
         });
       }
     }
