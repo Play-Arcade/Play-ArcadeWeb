@@ -6,6 +6,7 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 
 const indexRouter = require("./routes/index");
+const { redirectHTTPS } = require("./middlewares/httpsRedirect");
 const cors = require("cors");
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -31,11 +32,11 @@ app.use(cookieParser());
 app.use("/api", indexRouter);
 
 // Render web page
-app.use(express.static(path.join(__dirname, "../")));
-app.get("*", function(request, response) {
-  response.redirect("https://" + request.headers.host + request.url);
-});
-app.get("https://*", (req, res) => {
+app.use(express.static(path.join(__dirname, "../client")));
+// Redirect everything to use https except for local dev
+app.use(redirectHTTPS);
+
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
