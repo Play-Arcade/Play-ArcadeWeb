@@ -4,25 +4,26 @@
  */
 
 //imports
-const MONGOOSE = require("mongoose");
-const SCHEMA = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 //create schema
-const GENERIC_FORM = new Schema({
+const GenericFormSchema = new Schema({
   Name: { type: String, required: True },
   Email: { type: String, required: True },
 
-  //wasn't exactly sure on how to handle these fields yet
-  Professional: { type: Boolean, required: false, default: false },
-  Student: { type: Boolean, required: false, default: false },
-  Related_Org: { type: String, required: false },
-  Is_Dev: { type: Boolean, required: false, default: false },
-  Is_Inv: { type: Boolean, required: false, default: false },
-  Potential_Partner: { type: Boolean, required: false, default: false },
+  //true for professional, false for student
+  Professional_student: { type: Boolean, required: true, default: false },
+  Related_Org: { type: String, required: true },
+  Is_Developer: { type: Boolean, required: true, default: false },
+  Is_Investor: { type: Boolean, required: true, default: false },
+  Is_Partner: { type: Boolean, required: true, default: false },
+  Is_Player: { type: Boolean, required: true, default: false },
+  Newsletter: { type: Boolean, required: false, default: true },
 });
 
-//create model
-const GENERIC_MODEL = Mongoose.model("Generic Form", GENERIC_FORM);
-
-//export model
-module.exports = GENERIC_MODEL;
+//create and export model
+module.exports = GenericForm = mongoose.model(
+  "generic_form",
+  GenericFormSchema,
+);
