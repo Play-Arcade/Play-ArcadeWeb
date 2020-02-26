@@ -4,7 +4,7 @@ function init() {
   app = new PIXI.Application({
     width: 2000,
     height: 6000,
-    backgroundColor: 0xff0000,
+    backgroundColor: 0xffffff,
   });
 
   document.getElementById("canvas-container").appendChild(app.view);
