@@ -3,36 +3,34 @@ function renderTabContent(app) {
   visionScreen = new PIXI.Container();
   visionScreen.visible = false;
   app.stage.addChild(visionScreen);
+
   //sharejoy text
   shareJoy = PIXI.Sprite.from(app.loader.resources.sharejoy.texture);
   shareJoy.x = app.view.width / 2;
-  shareJoy.y = 250;
-  shareJoy.scale.set(1.7);
+  shareJoy.y = 430;
+  shareJoy.scale.set(0.8);
   shareJoy.anchor.set(0.5, 0);
   visionScreen.addChild(shareJoy);
-
   //hero image
   visionHero = PIXI.Sprite.from(app.loader.resources.visionHero.texture);
   visionHero.x = app.view.width / 2;
-  visionHero.y = 430;
-  visionHero.scale.set(0.7);
+  visionHero.y = 620;
+  visionHero.scale.set(1.6);
   visionHero.anchor.set(0.5, 0);
   visionScreen.addChild(visionHero);
-
   //text
   visionSubText = PIXI.Sprite.from(app.loader.resources.visionText.texture);
   visionSubText.x = app.view.width / 2;
-  visionSubText.y = 825;
+  visionSubText.y = 1500;
   visionSubText.anchor.set(0.5, 0);
   visionScreen.addChild(visionSubText);
-
   //get updates
   getUpdatesButton = PIXI.Sprite.from(
     app.loader.resources.getUpdatesButton.texture,
   );
   getUpdatesButton.x = app.view.width / 2;
-  getUpdatesButton.y = 910;
-  getUpdatesButton.scale.set(0.65);
+  getUpdatesButton.y = 1650;
+  getUpdatesButton.scale.set(1);
   getUpdatesButton.anchor.set(0.5, 0);
   visionScreen.addChild(getUpdatesButton);
 
@@ -44,39 +42,30 @@ function renderTabContent(app) {
   //player Active btn
   playerActive = PIXI.Sprite.from(app.loader.resources.playerActive.texture);
   playerActive.x = app.view.width / 2;
-  playerActive.y = 320;
-  playerActive.scale.set(0.5);
-  playerActive.anchor.set(1, 0);
-  solutionPlayerScreen.addChild(playerActive);
-  //Builder deactive btn
-  builderDeactive = PIXI.Sprite.from(
-    app.loader.resources.builderDeactive.texture,
-  );
-  builderDeactive.x = app.view.width / 2;
-  builderDeactive.y = 320;
-  builderDeactive.scale.set(0.5);
-  builderDeactive.anchor.set(0, 0);
-  builderDeactive.buttonMode = true;
-  builderDeactive.interactive = true;
-  builderDeactive.on("pointerdown", function() {
+  playerActive.y = 410;
+  playerActive.anchor.set(0.5);
+  playerActive.buttonMode = true;
+  playerActive.interactive = true;
+  playerActive.on("pointerdown", function() {
     //PLAYER - BUILDER SWITCH
     hideAllContent(app);
     solutionBuilderScreen.visible = true;
+    app.view.height = 3000; // fixes pixi auto resizing canvas
   });
-  solutionPlayerScreen.addChild(builderDeactive);
+  solutionPlayerScreen.addChild(playerActive);
+
   //Request access btn
   requestAccess = PIXI.Sprite.from(app.loader.resources.requestAccess.texture);
   requestAccess.x = app.view.width / 2;
-  requestAccess.y = 860;
-  requestAccess.scale.set(0.5);
+  requestAccess.y = 1700;
+  requestAccess.scale.set(1);
   requestAccess.anchor.set(0.5, 0);
   solutionPlayerScreen.addChild(requestAccess);
-
   //Cards
   solutionCards = PIXI.Sprite.from(app.loader.resources.solutionCards.texture);
   solutionCards.x = app.view.width / 2;
-  solutionCards.y = 400;
-  solutionCards.scale.set(0.5);
+  solutionCards.y = 560;
+  solutionCards.scale.set(1.4);
   solutionCards.anchor.set(0.5, 0);
   solutionPlayerScreen.addChild(solutionCards);
 
@@ -84,42 +73,34 @@ function renderTabContent(app) {
   solutionBuilderScreen = new PIXI.Container();
   solutionBuilderScreen.visible = false;
   app.stage.addChild(solutionBuilderScreen);
-
-  //player Active btn
-  builderActive = PIXI.Sprite.from(app.loader.resources.builderActive.texture);
-  builderActive.x = app.view.width / 2;
-  builderActive.y = 320;
-  builderActive.scale.set(0.5);
-  builderActive.anchor.set(0, 0);
-  solutionBuilderScreen.addChild(builderActive);
-  //Builder deactive btn
-  playerDeactive = PIXI.Sprite.from(
-    app.loader.resources.playerDeactive.texture,
-  );
-  playerDeactive.x = app.view.width / 2;
-  playerDeactive.y = 320;
-  playerDeactive.scale.set(0.5);
-  playerDeactive.anchor.set(1, 0);
-  playerDeactive.buttonMode = true;
-  playerDeactive.interactive = true;
-  playerDeactive.on("pointerdown", function() {
+  //Maker active btn
+  makerActive = PIXI.Sprite.from(app.loader.resources.makerActive.texture);
+  makerActive.x = app.view.width / 2;
+  makerActive.y = 410;
+  makerActive.anchor.set(0.5);
+  makerActive.buttonMode = true;
+  makerActive.interactive = true;
+  makerActive.on("pointerdown", function() {
     //PLAYER - BUILDER SWITCH
     hideAllContent(app);
     solutionPlayerScreen.visible = true;
+    app.view.height = 3000; // fixes pixi auto resizing canvas
   });
-  solutionBuilderScreen.addChild(playerDeactive);
+  solutionBuilderScreen.addChild(makerActive);
+
+  solutionBuilderScreen.addChild(makerActive);
   //Request access btn
   requestAccess = PIXI.Sprite.from(app.loader.resources.requestAccess.texture);
   requestAccess.x = app.view.width / 2;
-  requestAccess.y = 860;
-  requestAccess.scale.set(0.5);
-  requestAccess.anchor.set(0.5, 0);
+  requestAccess.y = 1750;
+  requestAccess.scale.set(1);
+  requestAccess.anchor.set(0.5);
   solutionBuilderScreen.addChild(requestAccess);
   //Cards
   builderCard = PIXI.Sprite.from(app.loader.resources.builderCard.texture);
   builderCard.x = app.view.width / 2;
-  builderCard.y = 400;
-  builderCard.scale.set(0.5);
+  builderCard.y = 560;
+  builderCard.scale.set(1.4);
   builderCard.anchor.set(0.5, 0);
   solutionBuilderScreen.addChild(builderCard);
 
@@ -127,30 +108,23 @@ function renderTabContent(app) {
   storyScreen = new PIXI.Container();
   storyScreen.visible = false;
   app.stage.addChild(storyScreen);
-  //early days card
-  earlyDays = PIXI.Sprite.from(app.loader.resources.earlyDays.texture);
-  earlyDays.x = app.view.width / 2;
-  earlyDays.y = 300;
-  earlyDays.scale.set(0.6);
-  earlyDays.anchor.set(0.5, 0);
-  storyScreen.addChild(earlyDays);
-  //summer card
-  summer = PIXI.Sprite.from(app.loader.resources.summer.texture);
-  summer.x = app.view.width / 2;
-  summer.y = 850;
-  summer.scale.set(0.6);
-  summer.anchor.set(0.5, 0);
-  storyScreen.addChild(summer);
+  //story card
+  earlyDaysCard = PIXI.Sprite.from(app.loader.resources.earlyDaysCard.texture);
+  earlyDaysCard.x = app.view.width / 2;
+  earlyDaysCard.y = 350;
+  earlyDaysCard.scale.set(1.7);
+  earlyDaysCard.anchor.set(0.5, 0);
+  storyScreen.addChild(earlyDaysCard);
 
-  //=====================================  MILESTONES  SCREEN =======================================
+  //=====================================  MILESTONES /GOALS SCREEN =======================================
   milestonesScreen = new PIXI.Container();
   milestonesScreen.visible = false;
   app.stage.addChild(milestonesScreen);
   //milestones map text
   mapGroup = PIXI.Sprite.from(app.loader.resources.mapGroup.texture);
   mapGroup.x = app.view.width / 2 - 30;
-  mapGroup.y = 220;
-  mapGroup.scale.set(0.7);
+  mapGroup.y = 230;
+  mapGroup.scale.set(1.2);
   mapGroup.anchor.set(0.5, 0);
   milestonesScreen.addChild(mapGroup);
 
@@ -158,13 +132,47 @@ function renderTabContent(app) {
   joinusScreen = new PIXI.Container();
   joinusScreen.visible = false;
   app.stage.addChild(joinusScreen);
-  //milestones map text
-  joinusCard = PIXI.Sprite.from(app.loader.resources.joinusCard.texture);
-  joinusCard.x = app.view.width / 2;
-  joinusCard.y = 340;
-  joinusCard.scale.set(0.6);
-  joinusCard.anchor.set(0.5, 0);
-  joinusScreen.addChild(joinusCard);
+  //Row 1
+  //News Letter Button
+  newsletter = PIXI.Sprite.from(app.loader.resources.newsletter.texture);
+  newsletter.x = app.view.width / 2 - 40;
+  newsletter.y = 400;
+  newsletter.anchor.set(1, 0);
+  joinusScreen.addChild(newsletter);
+  //Crowd Fund Button
+  crowdfund = PIXI.Sprite.from(app.loader.resources.crowdfund.texture);
+  crowdfund.x = app.view.width / 2 + 40;
+  crowdfund.y = 400;
+  crowdfund.anchor.set(0);
+  joinusScreen.addChild(crowdfund);
+
+  //ROw 2
+  //News Letter Button
+  partner = PIXI.Sprite.from(app.loader.resources.partner.texture);
+  partner.x = app.view.width / 2 - 40;
+  partner.y = 980;
+  partner.anchor.set(1, 0);
+  joinusScreen.addChild(partner);
+  //Investor Button
+  investor = PIXI.Sprite.from(app.loader.resources.investor.texture);
+  investor.x = app.view.width / 2 + 40;
+  investor.y = 980;
+  investor.anchor.set(0);
+  joinusScreen.addChild(investor);
+
+  //ROw 3
+  //News Letter Button
+  development = PIXI.Sprite.from(app.loader.resources.development.texture);
+  development.x = app.view.width / 2 - 40;
+  development.y = 1550;
+  development.anchor.set(1, 0);
+  joinusScreen.addChild(development);
+  //alphaAccess Button
+  alphaAccess = PIXI.Sprite.from(app.loader.resources.alphaAccess.texture);
+  alphaAccess.x = app.view.width / 2 + 40;
+  alphaAccess.y = 1550;
+  alphaAccess.anchor.set(0);
+  joinusScreen.addChild(alphaAccess);
 
   //================================================================================================
 }
@@ -202,4 +210,5 @@ function renderScreen(app, screen) {
       joinusScreen.visible = true;
       break;
   }
+  app.view.height = 3000;
 }
