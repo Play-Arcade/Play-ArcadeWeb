@@ -32,6 +32,8 @@ function renderTabContent(app) {
   getUpdatesButton.y = 1650;
   getUpdatesButton.scale.set(1);
   getUpdatesButton.anchor.set(0.5, 0);
+  getUpdatesButton.buttonMode=true;
+  getUpdatesButton.interactive=true;
   visionScreen.addChild(getUpdatesButton);
 
   //=====================================  SOLUTION - PLAYER - SCREEN =======================================
@@ -198,9 +200,9 @@ function renderTabContent(app) {
   newsletterhead.x=app.stage.width/4+200; 
   newsletterhead.scale.set(1.5);
 
-  newslettertext1.y=newsletterhead.y+80;
+  newslettertext1.y=newsletterhead.y+100;
 
-  newslettertext2.y=newslettertext1.y+300;
+  newslettertext2.y=newslettertext1.y+200;
 
   iam.y=newslettertext2.y+300;
 
@@ -271,10 +273,10 @@ function renderTabContent(app) {
   newsletterhead2.scale.set(2);
   
   intrested.y=newsletterhead2.y+200;
-  intrested.x=newsletterhead2.x/2;
+  intrested.x=newsletterhead2.x/2+100;
 
   partnerr.y=intrested.y+50;
-  partnerr.x=450;
+  partnerr.x=500;
   partnerr.buttonMode=true;
   partnerr.interactive=true;
   partnerInactive.x=partnerr.x;
@@ -286,7 +288,7 @@ function renderTabContent(app) {
   partnerInactive.on("pointerdown", function(e){partnerInactive.visible=false;partnerr.visible=true});
 
   investorr.y=intrested.y+50;
-  investorr.x=750;
+  investorr.x=800;
   investorr.buttonMode=true;
   investorr.interactive=true;
   investorInactive.x=investorr.x;
@@ -298,7 +300,7 @@ function renderTabContent(app) {
   investorInactive.on("pointerdown", function(e){investorInactive.visible=false;investorr.visible=true});
 
   developer.y=intrested.y+50;
-  developer.x=1050;
+  developer.x=1100;
   developer.buttonMode=true;
   developer.interactive=true;
   developerInactive.x=developer.x;
@@ -310,7 +312,7 @@ function renderTabContent(app) {
   developerInactive.on("pointerdown", function(e){developerInactive.visible=false;developer.visible=true});
 
   player.y=intrested.y+50;
-  player.x=1350;
+  player.x=1400;
   player.buttonMode=true;
   player.interactive=true;
   playerInactive.x=player.x;
@@ -321,10 +323,10 @@ function renderTabContent(app) {
   player.on("pointerdown", function(e){playerInactive.visible=true;player.visible=false});
   playerInactive.on("pointerdown", function(e){playerInactive.visible=false;player.visible=true});
 
-  tap.x=intrested.x-150;
+  tap.x=intrested.x-300;
   tap.y=player.y+300;
 
-  join.x=app.stage.width/2;
+  join.x=app.stage.width/4+350;
   join.y=tap.y+150;
   join.buttonMode=true;
   join.interactive=true;
@@ -363,7 +365,7 @@ function renderTabContent(app) {
     joinUsIcon.visible=true;
     joinusFrame.visible=true;
     joinUsText.visible=true;
-    joinusScreen.visible=true;
+    renderScreen(app,"joinus");
   });
 
   close2.on("pointerdown", function(e){
@@ -375,9 +377,8 @@ function renderTabContent(app) {
     joinUsIcon.visible=true;
     joinusFrame.visible=true;
     joinUsText.visible=true;
-    //joinusCard.visible=true;
-    joinusScreen.visible=true; 
-  })
+    renderScreen(app,"joinus"); 
+  });
 }
 function hideAllContent(app) {
   app.view.height = 1200;

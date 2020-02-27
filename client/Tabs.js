@@ -152,6 +152,7 @@ function renderTabs(app) {
   milestonesFrame.visible = false;
   storyFrame.visible = false;
   solutionFrame.visible = false;
+  
 
   function hideAll() {
     //Hide all Texts and frame sprites
