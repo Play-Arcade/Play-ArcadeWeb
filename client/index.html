@@ -1,24 +1,27 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Parallax Scrolling Demo</title>
+    <title>Play!Arcade</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
         background-color: #fff;
         margin: 0;
         padding: 0;
+        height: 3000px;
       }
-      #canvas-container,
+      #canvas-container {
+        width: 90%;
+        margin: auto;
+      }
       canvas {
-        max-width: 500px;
         width: 100%;
+
         margin: auto;
       }
 
       .header {
         width: 100%;
-        max-width: 500px;
         margin: auto;
       }
     </style>
@@ -29,8 +32,8 @@
     </div>
     <div id="canvas-container"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.0.0/pixi.min.js"></script>
-    <script src="client/main.js"></script>
-    <script src="client/Tabs.js"></script>
-    <script src="client/TabContent.js"></script>
+    <script src="main.js"></script>
+    <script src="Tabs.js"></script>
+    <script src="TabContent.js"></script>
   </body>
 </html>

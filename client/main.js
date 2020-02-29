@@ -2,7 +2,8 @@ function init() {
   let app;
 
   app = new PIXI.Application({
-    height: 1000,
+    width: 2000,
+    height: 6000,
     backgroundColor: 0xffffff,
   });
 
@@ -22,24 +23,26 @@ function init() {
     .add("solution", "solution/Solution.svg")
     .add("solutionFrame", "solution/solution-frame.svg")
     .add("solutionCards", "solution/cards.png")
-    .add("playerActive", "solution/playerActive.png")
-    .add("builderDeactive", "solution/builderDeactive.png")
-    .add("playerDeactive", "solution/playerDeactive.png")
-    .add("builderActive", "solution/builderActive.png")
+    .add("playerActive", "solution/playerActive.svg")
+    .add("makerActive", "solution/makerActive.svg")
     .add("requestAccess", "solution/requestAccess.png")
     .add("builderCard", "solution/builderCard.png")
     //story
     .add("story", "story/Story.svg")
     .add("storyFrame", "story/story-frame.svg")
-    .add("earlyDays", "story/earlyDays.svg")
-    .add("summer", "story/summer.svg")
+    .add("earlyDaysCard", "story/earlyDays.png")
     //milestones
     .add("milestones", "milestones/Milestones.svg")
     .add("milestonesFrame", "milestones/milestones-frame.svg")
     .add("mapGroup", "milestones/map group.png")
     //joinus
     .add("joinUs", "joinus/Join Us.svg")
-    .add("joinusCard", "joinus/joinusCards.png")
+    .add("alphaAccess", "joinus/alphaAccess.png")
+    .add("crowdfund", "joinus/crowdfund.png")
+    .add("development", "joinus/development.png")
+    .add("newsletter", "joinus/newsletter.png")
+    .add("partner", "joinus/partnerwithus.png")
+    .add("investor", "joinus/investor.png")
     .add("joinUsFrame", "joinus/joinus-frame.svg");
   app.loader.load();
 
