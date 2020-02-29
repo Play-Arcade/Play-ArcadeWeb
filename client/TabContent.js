@@ -169,7 +169,7 @@ function renderTabContent(app) {
   development = PIXI.Sprite.from(app.loader.resources.development.texture);
   development.x = app.view.width / 2 - 40;
   development.y = 1550;
-  development.anchor.set(1, 0);
+ // development.anchor.set(1, 0);
   joinusScreen.addChild(development);
   //alphaAccess Button
   alphaAccess = PIXI.Sprite.from(app.loader.resources.alphaAccess.texture);
@@ -184,6 +184,7 @@ function renderTabContent(app) {
 
   newsletterScreen = new PIXI.Container();
   newsletterScreen.visible = false;
+  
   app.stage.addChild(newsletterScreen);
 
   newsletterhead = new PIXI.Sprite.from(app.loader.resources.newsletterhead.texture);
@@ -349,8 +350,7 @@ function renderTabContent(app) {
     milestonesIcon.visible=false;
     joinUsIcon.visible=false;
     joinusFrame.visible=false;
-    joinUsText.visible=false;
-    newsletterScreen.visible=true; 
+    joinUsText.visible=false; 
   });
 
   continuee.on("pointerdown", function(e){

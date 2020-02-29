@@ -14,6 +14,16 @@ function init() {
   app.loader
     //mobile elements
     .add("mobileOutline", "mobile/outline.svg")
+    .add("joinNewsletter","mobile/newsletter/join.svg")
+    .add("crowdfundmobile","mobile/newsletter/crowdfund.svg")
+    .add("investormobile","mobile/newsletter/investor.svg")
+    .add("partnermobile","mobile/newsletter/partner.svg")
+    .add("devmobile","mobile/newsletter/dev.svg")
+    .add("alphamobile","mobile/newsletter/alpha.svg")
+    .add("textmobile","mobile/newsletter/step0/text.svg")
+    .add("textmobile2","mobile/newsletter/step0/text2.svg")
+    .add("iammobile","mobile/newsletter/step0/iam.svg")
+    .add("textat","mobile/newsletter/step0/at.svg")
     //vision screen
     .add("vision", "vision/Vision.svg")
     .add("visionFrame", "vision/vision-frame.svg")
