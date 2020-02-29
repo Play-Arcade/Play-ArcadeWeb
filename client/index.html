@@ -24,6 +24,12 @@
         width: 100%;
         margin: auto;
       }
+      @media only screen and (max-width: 650px) {
+        #canvas-container {
+          width: 100%;
+          margin: 0;
+        }
+      }
     </style>
   </head>
   <body onload="init();">
@@ -35,5 +41,6 @@
     <script src="main.js"></script>
     <script src="Tabs.js"></script>
     <script src="TabContent.js"></script>
+    <script src="mobile.js"></script>
   </body>
 </html>
