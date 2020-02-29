@@ -240,8 +240,10 @@ function renderTabContent(app) {
 
   newsletterScreen.addChild(newsletterhead,newslettertext1,newslettertext2,continuee,iam,close,proInactive,studentActive,proActive,studentInactive);
 
+  studentActive.on("pointerdown", function(e){studentInactive.visible=false;studentActive.visible=true;proInactive.visible=true;});
   studentInactive.on("pointerdown", function(e){studentInactive.visible=false;studentActive.visible=true;proInactive.visible=true;});
   proInactive.on("pointerdown", function(e){proActive.visible=true;proInactive.visible=false;studentInactive.visible=true;});
+  proActive.on("pointerdown", function(e){proActive.visible=true;proInactive.visible=false;studentInactive.visible=true;});
 
   
 
