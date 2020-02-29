@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 const indexRouter = require("./routes/index");
 const formRouter = require("./routes/form");
+const { redirectHTTPS } = require("./middlewares/httpsRedirect");
 const cors = require("cors");
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -33,9 +34,12 @@ app.use("/api", indexRouter);
 app.use("/form_api", formRouter);
 
 // Render web page
-app.use(express.static(path.join(__dirname, "../")));
+app.use(express.static(path.join(__dirname, "../client")));
+// Redirect everything to use https except for local dev
+app.use(redirectHTTPS);
+
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+  res.sendFile(path.join(__dirname, "../client/index.html"));
 });
 
 module.exports = app;

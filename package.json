@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "cd server/ && npm start",
+    "dev": "cd server/ && npm run dev",
     "heroku-postbuild": "cd server/ && npm install",
     "lint-client": "npx eslint client/ -c .eslintrc --ext js",
     "lint-server": "npx eslint server/ -c .eslintrc --ext js --ignore-pattern node_modules/",
