@@ -107,16 +107,61 @@ function renderTabContent(app) {
   solutionBuilderScreen.addChild(builderCard);
 
   //=====================================  STORY  SCREEN =======================================
+  //--------------------------------------------------------story part 1-------------------------
   storyScreen = new PIXI.Container();
   storyScreen.visible = false;
   app.stage.addChild(storyScreen);
-  //story card
+
   earlyDaysCard = PIXI.Sprite.from(app.loader.resources.earlyDaysCard.texture);
+  earlyDaysCard2 = PIXI.Sprite.from(app.loader.resources.earlyDaysCard2.texture);
+  rightactive=PIXI.Sprite.from(app.loader.resources.rightactive.texture);
+  rightinactive=PIXI.Sprite.from(app.loader.resources.rightinactive.texture);
+  leftinactive=PIXI.Sprite.from(app.loader.resources.leftinactive.texture);
+  leftactive=PIXI.Sprite.from(app.loader.resources.leftactive.texture);
+
   earlyDaysCard.x = app.view.width / 2;
   earlyDaysCard.y = 350;
   earlyDaysCard.scale.set(1.7);
   earlyDaysCard.anchor.set(0.5, 0);
-  storyScreen.addChild(earlyDaysCard);
+
+  leftinactive.x=earlyDaysCard.x/4-48;
+  leftinactive.y=390;
+  leftinactive.scale.set(1.7);
+  leftinactive.buttonMode=true;
+  leftinactive.interactive=true;
+
+  rightactive.x=leftinactive.x+1340;
+  rightactive.y=390;
+  rightactive.scale.set(1.7);
+  rightactive.buttonMode=true;
+  rightactive.interactive=true;
+
+  //--------------------------------------------------------story part 2-------------------------
+
+  earlyDaysCard2.x = app.view.width / 2;
+  earlyDaysCard2.y = 350;
+  earlyDaysCard2.scale.set(1.7);
+  earlyDaysCard2.anchor.set(0.5, 0);
+  earlyDaysCard2.visible=false;
+
+  rightinactive.x=leftinactive.x+1340;
+  rightinactive.y=390;
+  rightinactive.scale.set(1.7);
+  rightinactive.buttonMode=true;
+  rightinactive.interactive=true;
+
+  leftactive.x=earlyDaysCard.x/4-48;
+  leftactive.y=390;
+  leftactive.scale.set(1.7);
+  leftactive.buttonMode=true;
+  leftactive.interactive=true;
+  leftactive.visible=false;
+
+
+  storyScreen.addChild(earlyDaysCard,earlyDaysCard2,leftinactive,leftactive,rightinactive,rightactive);
+  
+  rightactive.on("pointerdown",function(e){rightinactive.visible=true;leftinactive.visible=false;earlyDaysCard.visible=false;leftactive.visible=true;earlyDaysCard2.visible=true;rightactive.visible=false;});
+  leftactive.on("pointerdown",function(e){leftinactive.visible=true;earlyDaysCard.visible=true;leftactive.visible=false;rightinactive.visible=false;earlyDaysCard2.visible=false;rightactive.visible=true;})
 
   //=====================================  MILESTONES /GOALS SCREEN =======================================
   milestonesScreen = new PIXI.Container();

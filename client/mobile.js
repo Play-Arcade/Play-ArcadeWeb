@@ -163,4 +163,3 @@ function resizeTabContentForMobile(app) {
   close.interactive=true;
 
 }
-app.view.height=3000;

@@ -43,7 +43,12 @@ function init() {
     //story
     .add("story", "story/Story.svg")
     .add("storyFrame", "story/story-frame.svg")
-    .add("earlyDaysCard", "story/earlyDays.png")
+    .add("earlyDaysCard", "story/earlyDays.svg")
+    .add("earlyDaysCard2", "story/earlyDays2.svg")
+    .add("rightactive", "story/rightactive.svg")
+    .add("leftinactive", "story/leftinactive.svg")
+    .add("rightinactive", "story/rightinactive.svg")
+    .add("leftactive", "story/leftactive.svg")
     //milestones
     .add("milestones", "milestones/Milestones.svg")
     .add("milestonesFrame", "milestones/milestones-frame.svg")
