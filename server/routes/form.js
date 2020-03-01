@@ -57,4 +57,30 @@ router.post("/newdevform", (req, res) => {
   });
 });
 
+router.post("/newscheduleform", (req, res) => {
+  const form = req.body;
+
+  const newForm = new scheduleForm({
+    Name: form.Name,
+    Email: form.Email,
+    Professional: form.Professional,
+    Student: form.Student,
+    Related_Org: form.Related_Org,
+
+    Date: form.Date,
+    Location: form.Location,
+    Time: form.Time,
+    Type: form.Type,
+  });
+
+  newForm.save(e => {
+    if (e) {
+      console.error("error while saving form to database", e);
+      res.sendStatus(500);
+    } else {
+      res.json("Submission success!");
+    }
+  });
+});
+
 module.exports = router;
