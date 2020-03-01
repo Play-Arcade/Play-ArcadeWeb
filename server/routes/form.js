@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const genericForm = require("../models/generic");
 const devForm = require("../models/dev");
+const investorForm = require("../model/investor");
+const partnerForm = require("../model/partner");
+const playerForm = require("../models/player");
+const newsletterForm = require("../models/newsletter");
 
 router.post("/newgenericform", (req, res) => {
   const form = req.body;
@@ -57,20 +61,19 @@ router.post("/newdevform", (req, res) => {
   });
 });
 
-router.post("/newscheduleform", (req, res) => {
+router.post("/newinvesterform", (req, res) => {
   const form = req.body;
 
-  const newForm = new scheduleForm({
+  const newForm = new investerForm({
     Name: form.Name,
     Email: form.Email,
-    Professional: form.Professional,
-    Student: form.Student,
+    Professional_student: form.Professional_student,
     Related_Org: form.Related_Org,
-
-    Date: form.Date,
-    Location: form.Location,
-    Time: form.Time,
-    Type: form.Type,
+    Investor_Type: form.Investor_Type,
+    Institution_Name: form.Institution_Name,
+    Call_Date: form.Call_Date,
+    Call_Time: form.Call_Time,
+    Deck_Req: form.Deck_Req,
   });
 
   newForm.save(e => {
@@ -83,4 +86,71 @@ router.post("/newscheduleform", (req, res) => {
   });
 });
 
+router.post("/newpartnerform", (req, res) => {
+  const form = req.body;
+
+  const newForm = new partnerForm({
+    Name: form.Name,
+    Email: form.Email,
+    Partner_Type: form.Partner_Type,
+    Intended_Partnership: form.Intended_Partnership,
+    InPerson: form.InPerson,
+    OnCall: form.OnCall,
+    Date: form.Date,
+    Time: form.Time,
+  });
+
+  newForm.save(e => {
+    if (e) {
+      console.error("error while saving form to database", e);
+      res.sendStatus(500);
+    } else {
+      res.json("Submission success!");
+    }
+  });
+});
+
+router.post("/newnewsletterform", (req, res) => {
+  const form = req.body;
+
+  const newForm = new newsletterForm({
+    Name: form.Name,
+    Email: form.Email,
+    Professional_student: form.Professional_student,
+    Related_Org: form.Related_Org,
+  });
+
+  newForm.save(e => {
+    if (e) {
+      console.error("error while saving form to database", e);
+      res.sendStatus(500);
+    } else {
+      res.json("Submission success!");
+    }
+  });
+});
+
+router.post("/newplayerform", (req, res) => {
+  const form = req.body;
+
+  const newForm = new scheduleForm({
+    Name: form.Name,
+    Email: form.Email,
+    Professional_student: form.Professional_student,
+    Related_Org: form.Related_Org,
+    Account_Name: form.Account_Name,
+    Fav_Game_Type: form.Fav_Game_Type,
+    Devices: form.Devices,
+    Reason_for_play: form.Reason_for_play,
+  });
+
+  newForm.save(e => {
+    if (e) {
+      console.error("error while saving form to database", e);
+      res.sendStatus(500);
+    } else {
+      res.json("Submission success!");
+    }
+  });
+});
 module.exports = router;
