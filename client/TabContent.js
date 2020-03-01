@@ -238,7 +238,30 @@ function renderTabContent(app) {
   close.buttonMode=true;
   close.interactive=true;
 
-  newsletterScreen.addChild(newsletterhead,newslettertext1,newslettertext2,continuee,iam,close,proInactive,studentActive,proActive,studentInactive);
+  var input = new PIXI.Input({
+		type: "text",
+		value: "",
+		placeholder: "your name",
+		placeholderColor: "#ccc",
+		readonly: false,
+		maxlength: null,
+		onfocus: function(){},
+		onblur: function(){},
+		oninput: function(){},
+		width: 300,
+		height: 50,
+		padding: 20,
+		borderColor: "#f88",
+		borderWidth: 3,
+		borderRadius: 5,
+		backgroundColor: "#ffffff",
+    innerShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)",
+    display: "block"
+	});
+  input.x = app.stage.width/4;
+  input.y = app.stage.width/4;
+
+  newsletterScreen.addChild(newsletterhead,newslettertext1,newslettertext2,continuee,iam,close,proInactive,studentActive,proActive,studentInactive, input);
 
   studentActive.on("pointerdown", function(e){studentInactive.visible=false;studentActive.visible=true;proInactive.visible=true;});
   studentInactive.on("pointerdown", function(e){studentInactive.visible=false;studentActive.visible=true;proInactive.visible=true;});
