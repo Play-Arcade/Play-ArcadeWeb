@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const genericForm = require("../models/generic");
 const devForm = require("../models/dev");
-const investorForm = require("../model/investor");
-const partnerForm = require("../model/partner");
+const investorForm = require("../models/investor");
+const partnerForm = require("../models/partner");
 const playerForm = require("../models/player");
 const newsletterForm = require("../models/newsletter");
 
@@ -153,4 +153,5 @@ router.post("/newplayerform", (req, res) => {
     }
   });
 });
+
 module.exports = router;
