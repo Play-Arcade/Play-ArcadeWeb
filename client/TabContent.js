@@ -255,8 +255,7 @@ function renderTabContent(app) {
 		borderWidth: 3,
 		borderRadius: 5,
 		backgroundColor: "#ffffff",
-    innerShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)",
-    display: "block"
+    innerShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)"
 	});
   input.x = app.stage.width/4;
   input.y = app.stage.width/4;
