@@ -6,6 +6,7 @@ const investorForm = require("../models/investor");
 const partnerForm = require("../models/partner");
 const playerForm = require("../models/player");
 const newsletterForm = require("../models/newsletter");
+const crowdfundForm = require("../models/crowdfund");
 
 router.post("/newgenericform", (req, res) => {
   const form = req.body;
@@ -22,14 +23,7 @@ router.post("/newgenericform", (req, res) => {
     Newsletter: form.Newsletter,
   });
 
-  newForm.save(e => {
-    if (e) {
-      console.error("error while saving form to database", e);
-      res.sendStatus(500);
-    } else {
-      res.json("Submission Success!");
-    }
-  });
+  save(newForm);
 });
 
 router.post("/newdevform", (req, res) => {
@@ -51,13 +45,14 @@ router.post("/newdevform", (req, res) => {
     Classification: form.Classification,
   });
 
-  newForm.save(e => {
-    if (e) {
-      console.error("error while saving form to database", e);
-      res.sendStatus(500);
-    } else {
-      res.json("Submission Success!");
-    }
+  save(newForm);
+});
+
+router.post("/newcrowdfundform", (req, res) => {
+  const form = req.body;
+  const newForm = new crowdfundForm({
+    Name: form.Name,
+    Email: form.Email,
   });
 });
 
@@ -76,14 +71,7 @@ router.post("/newinvesterform", (req, res) => {
     Deck_Req: form.Deck_Req,
   });
 
-  newForm.save(e => {
-    if (e) {
-      console.error("error while saving form to database", e);
-      res.sendStatus(500);
-    } else {
-      res.json("Submission success!");
-    }
-  });
+  save(newForm);
 });
 
 router.post("/newpartnerform", (req, res) => {
@@ -92,6 +80,8 @@ router.post("/newpartnerform", (req, res) => {
   const newForm = new partnerForm({
     Name: form.Name,
     Email: form.Email,
+    Professional_student: form.Professional_student,
+    Related_Org: form.Related_Org,
     Partner_Type: form.Partner_Type,
     Intended_Partnership: form.Intended_Partnership,
     InPerson: form.InPerson,
@@ -100,14 +90,7 @@ router.post("/newpartnerform", (req, res) => {
     Time: form.Time,
   });
 
-  newForm.save(e => {
-    if (e) {
-      console.error("error while saving form to database", e);
-      res.sendStatus(500);
-    } else {
-      res.json("Submission success!");
-    }
-  });
+  save(newForm);
 });
 
 router.post("/newnewsletterform", (req, res) => {
@@ -120,14 +103,7 @@ router.post("/newnewsletterform", (req, res) => {
     Related_Org: form.Related_Org,
   });
 
-  newForm.save(e => {
-    if (e) {
-      console.error("error while saving form to database", e);
-      res.sendStatus(500);
-    } else {
-      res.json("Submission success!");
-    }
-  });
+  save(newForm);
 });
 
 router.post("/newplayerform", (req, res) => {
@@ -144,6 +120,10 @@ router.post("/newplayerform", (req, res) => {
     Reason_for_play: form.Reason_for_play,
   });
 
+  save(newForm);
+});
+
+function save(newForm) {
   newForm.save(e => {
     if (e) {
       console.error("error while saving form to database", e);
@@ -152,6 +132,5 @@ router.post("/newplayerform", (req, res) => {
       res.json("Submission success!");
     }
   });
-});
-
+}
 module.exports = router;
