@@ -56,10 +56,10 @@ router.post("/newcrowdfundform", (req, res) => {
   });
 });
 
-router.post("/newinvesterform", (req, res) => {
+router.post("/newinvestorform", (req, res) => {
   const form = req.body;
 
-  const newForm = new investerForm({
+  const newForm = new investorForm({
     Name: form.Name,
     Email: form.Email,
     Professional_student: form.Professional_student,
