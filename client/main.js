@@ -3,7 +3,7 @@ function init() {
   resized = false;
   app = new PIXI.Application({
     width: 2000,
-    height: 6000,
+    height: 4000,
     backgroundColor: 0xffffff,
   });
 
@@ -14,16 +14,16 @@ function init() {
   app.loader
     //mobile elements
     .add("mobileOutline", "mobile/outline.svg")
-    .add("joinNewsletter","mobile/newsletter/join.svg")
-    .add("crowdfundmobile","mobile/newsletter/crowdfund.svg")
-    .add("investormobile","mobile/newsletter/investor.svg")
-    .add("partnermobile","mobile/newsletter/partner.svg")
-    .add("devmobile","mobile/newsletter/dev.svg")
-    .add("alphamobile","mobile/newsletter/alpha.svg")
-    .add("textmobile","mobile/newsletter/step0/text.svg")
-    .add("textmobile2","mobile/newsletter/step0/text2.svg")
-    .add("iammobile","mobile/newsletter/step0/iam.svg")
-    .add("textat","mobile/newsletter/step0/at.svg")
+    .add("joinNewsletter", "mobile/newsletter/join.svg")
+    .add("crowdfundmobile", "mobile/newsletter/crowdfund.svg")
+    .add("investormobile", "mobile/newsletter/investor.svg")
+    .add("partnermobile", "mobile/newsletter/partner.svg")
+    .add("devmobile", "mobile/newsletter/dev.svg")
+    .add("alphamobile", "mobile/newsletter/alpha.svg")
+    .add("textmobile", "mobile/newsletter/step0/text.svg")
+    .add("textmobile2", "mobile/newsletter/step0/text2.svg")
+    .add("iammobile", "mobile/newsletter/step0/iam.svg")
+    .add("textat", "mobile/newsletter/step0/at.svg")
     //vision screen
     .add("vision", "vision/Vision.svg")
     .add("visionFrame", "vision/vision-frame.svg")
@@ -36,14 +36,15 @@ function init() {
     .add("solution", "solution/Solution.svg")
     .add("solutionFrame", "solution/solution-frame.svg")
     .add("solutionCards", "solution/cards.png")
-    .add("playerActive", "solution/playerActive.svg")
-    .add("makerActive", "solution/makerActive.svg")
+    .add("playerActive", "solution/playerActive.png")
+    .add("makerActive", "solution/makerActive.png")
     .add("requestAccess", "solution/requestAccess.png")
     .add("builderCard", "solution/builderCard.png")
     //story
     .add("story", "story/Story.svg")
     .add("storyFrame", "story/story-frame.svg")
     .add("earlyDaysCard", "story/earlyDays.png")
+    .add("earlyDaysMobile", "story/mobile/earlyDays.png")
     //milestones
     .add("milestones", "milestones/Milestones.svg")
     .add("milestonesFrame", "milestones/milestones-frame.svg")

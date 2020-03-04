@@ -32,8 +32,8 @@ function renderTabContent(app) {
   getUpdatesButton.y = 1650;
   getUpdatesButton.scale.set(1);
   getUpdatesButton.anchor.set(0.5, 0);
-  getUpdatesButton.buttonMode=true;
-  getUpdatesButton.interactive=true;
+  getUpdatesButton.buttonMode = true;
+  getUpdatesButton.interactive = true;
   visionScreen.addChild(getUpdatesButton);
 
   //=====================================  SOLUTION - PLAYER - SCREEN =======================================
@@ -52,16 +52,16 @@ function renderTabContent(app) {
     //PLAYER - BUILDER SWITCH
     hideAllContent(app);
     solutionBuilderScreen.visible = true;
-    app.view.height = 3000; // fixes pixi auto resizing canvas
+    app.view.height = 8000; // fixes pixi auto resizing canvas
   });
   solutionPlayerScreen.addChild(playerActive);
 
   //Request access btn
   requestAccess = PIXI.Sprite.from(app.loader.resources.requestAccess.texture);
   requestAccess.x = app.view.width / 2;
-  requestAccess.y = 1700;
+  requestAccess.y = 1750;
   requestAccess.scale.set(1);
-  requestAccess.anchor.set(0.5, 0);
+  requestAccess.anchor.set(0.5);
   solutionPlayerScreen.addChild(requestAccess);
   //Cards
   solutionCards = PIXI.Sprite.from(app.loader.resources.solutionCards.texture);
@@ -86,18 +86,18 @@ function renderTabContent(app) {
     //PLAYER - BUILDER SWITCH
     hideAllContent(app);
     solutionPlayerScreen.visible = true;
-    app.view.height = 3000; // fixes pixi auto resizing canvas
+    app.view.height = 8000; // fixes pixi auto resizing canvas
   });
   solutionBuilderScreen.addChild(makerActive);
 
   solutionBuilderScreen.addChild(makerActive);
   //Request access btn
-  requestAccess = PIXI.Sprite.from(app.loader.resources.requestAccess.texture);
-  requestAccess.x = app.view.width / 2;
-  requestAccess.y = 1750;
-  requestAccess.scale.set(1);
-  requestAccess.anchor.set(0.5);
-  solutionBuilderScreen.addChild(requestAccess);
+  requestAccess2 = PIXI.Sprite.from(app.loader.resources.requestAccess.texture);
+  requestAccess2.x = app.view.width / 2;
+  requestAccess2.y = 1750;
+  requestAccess2.scale.set(1);
+  requestAccess2.anchor.set(0.5);
+  solutionBuilderScreen.addChild(requestAccess2);
   //Cards
   builderCard = PIXI.Sprite.from(app.loader.resources.builderCard.texture);
   builderCard.x = app.view.width / 2;
@@ -140,8 +140,8 @@ function renderTabContent(app) {
   newsletter.x = app.view.width / 2 - 40;
   newsletter.y = 400;
   newsletter.anchor.set(1, 0);
-  newsletter.buttonMode=true;
-  newsletter.interactive=true;
+  newsletter.buttonMode = true;
+  newsletter.interactive = true;
   joinusScreen.addChild(newsletter);
   //Crowd Fund Button
   crowdfund = PIXI.Sprite.from(app.loader.resources.crowdfund.texture);
@@ -169,7 +169,7 @@ function renderTabContent(app) {
   development = PIXI.Sprite.from(app.loader.resources.development.texture);
   development.x = app.view.width / 2 - 40;
   development.y = 1550;
- // development.anchor.set(1, 0);
+  development.anchor.set(1, 0);
   joinusScreen.addChild(development);
   //alphaAccess Button
   alphaAccess = PIXI.Sprite.from(app.loader.resources.alphaAccess.texture);
@@ -179,211 +179,295 @@ function renderTabContent(app) {
   joinusScreen.addChild(alphaAccess);
 
   //================================================================================================
-  
+
   //=====================================  NEWS LETTER =============================================
 
   newsletterScreen = new PIXI.Container();
   newsletterScreen.visible = false;
-  
+
   app.stage.addChild(newsletterScreen);
 
-  newsletterhead = new PIXI.Sprite.from(app.loader.resources.newsletterhead.texture);
-  newslettertext1= new PIXI.Sprite.from(app.loader.resources.newslettertext1.texture);
-  newslettertext2=new PIXI.Sprite.from(app.loader.resources.newslettertext2.texture);
-  continuee =new PIXI.Sprite.from(app.loader.resources.continue.texture);
-  iam=new PIXI.Sprite.from(app.loader.resources.iam.texture);
-  studentActive=new PIXI.Sprite.from(app.loader.resources.studentActive.texture);
-  studentInactive=new PIXI.Sprite.from(app.loader.resources.studentInactive.texture);
-  proActive=new PIXI.Sprite.from(app.loader.resources.proActive.texture);
-  proInactive=new PIXI.Sprite.from(app.loader.resources.proInactive.texture);
-  close=new PIXI.Sprite.from(app.loader.resources.close.texture);
+  newsletterhead = new PIXI.Sprite.from(
+    app.loader.resources.newsletterhead.texture,
+  );
+  newslettertext1 = new PIXI.Sprite.from(
+    app.loader.resources.newslettertext1.texture,
+  );
+  newslettertext2 = new PIXI.Sprite.from(
+    app.loader.resources.newslettertext2.texture,
+  );
+  continuee = new PIXI.Sprite.from(app.loader.resources.continue.texture);
+  iam = new PIXI.Sprite.from(app.loader.resources.iam.texture);
+  studentActive = new PIXI.Sprite.from(
+    app.loader.resources.studentActive.texture,
+  );
+  studentInactive = new PIXI.Sprite.from(
+    app.loader.resources.studentInactive.texture,
+  );
+  proActive = new PIXI.Sprite.from(app.loader.resources.proActive.texture);
+  proInactive = new PIXI.Sprite.from(app.loader.resources.proInactive.texture);
+  close = new PIXI.Sprite.from(app.loader.resources.close.texture);
 
-  newsletterhead.x=app.stage.width/4+200; 
+  newsletterhead.x = app.stage.width / 4 + 200;
   newsletterhead.scale.set(1.5);
 
-  newslettertext1.y=newsletterhead.y+100;
+  newslettertext1.y = newsletterhead.y + 100;
 
-  newslettertext2.y=newslettertext1.y+200;
+  newslettertext2.y = newslettertext1.y + 200;
 
-  iam.y=newslettertext2.y+300;
+  iam.y = newslettertext2.y + 300;
 
-  proInactive.x=iam.x+150;
-  proInactive.y=iam.y-30;
-  proInactive.buttonMode=true;
-  proInactive.interactive=true;
+  proInactive.x = iam.x + 150;
+  proInactive.y = iam.y - 30;
+  proInactive.buttonMode = true;
+  proInactive.interactive = true;
 
-  proActive.x=iam.x+150;
-  proActive.y=iam.y-30;
-  proActive.buttonMode=true;
-  proActive.interactive=true;
-  proActive.visible=false;
+  proActive.x = iam.x + 150;
+  proActive.y = iam.y - 30;
+  proActive.buttonMode = true;
+  proActive.interactive = true;
+  proActive.visible = false;
 
-  studentActive.x=proInactive.x+424;
-  studentActive.y=iam.y-30;
-  studentActive.buttonMode=true;
-  studentActive.interactive=true;
+  studentActive.x = proInactive.x + 424;
+  studentActive.y = iam.y - 30;
+  studentActive.buttonMode = true;
+  studentActive.interactive = true;
 
-  studentInactive.x=proInactive.x+424;
-  studentInactive.y=iam.y-30;
-  studentInactive.buttonMode=true;
-  studentInactive.interactive=true;
-  studentInactive.visible=false;
+  studentInactive.x = proInactive.x + 424;
+  studentInactive.y = iam.y - 30;
+  studentInactive.buttonMode = true;
+  studentInactive.interactive = true;
+  studentInactive.visible = false;
 
-  continuee.y=iam.y+150;
-  continuee.x=app.stage.width/2-50;
-  continuee.buttonMode=true;
-  continuee.interactive=true;
+  continuee.y = iam.y + 150;
+  continuee.x = app.stage.width / 2 - 50;
+  continuee.buttonMode = true;
+  continuee.interactive = true;
 
-  close.x=app.stage.width-30;
-  close.y=newsletterhead.y;
-  close.buttonMode=true;
-  close.interactive=true;
+  close.x = app.stage.width - 30;
+  close.y = newsletterhead.y;
+  close.buttonMode = true;
+  close.interactive = true;
 
-  newsletterScreen.addChild(newsletterhead,newslettertext1,newslettertext2,continuee,iam,close,proInactive,studentActive,proActive,studentInactive);
+  newsletterScreen.addChild(
+    newsletterhead,
+    newslettertext1,
+    newslettertext2,
+    continuee,
+    iam,
+    close,
+    proInactive,
+    studentActive,
+    proActive,
+    studentInactive,
+  );
 
-  studentActive.on("pointerdown", function(e){studentInactive.visible=false;studentActive.visible=true;proInactive.visible=true;});
-  studentInactive.on("pointerdown", function(e){studentInactive.visible=false;studentActive.visible=true;proInactive.visible=true;});
-  proInactive.on("pointerdown", function(e){proActive.visible=true;proInactive.visible=false;studentInactive.visible=true;});
-  proActive.on("pointerdown", function(e){proActive.visible=true;proInactive.visible=false;studentInactive.visible=true;});
-
-  
+  studentActive.on("pointerdown", function(e) {
+    studentInactive.visible = false;
+    studentActive.visible = true;
+    proInactive.visible = true;
+  });
+  studentInactive.on("pointerdown", function(e) {
+    studentInactive.visible = false;
+    studentActive.visible = true;
+    proInactive.visible = true;
+  });
+  proInactive.on("pointerdown", function(e) {
+    proActive.visible = true;
+    proInactive.visible = false;
+    studentInactive.visible = true;
+  });
+  proActive.on("pointerdown", function(e) {
+    proActive.visible = true;
+    proInactive.visible = false;
+    studentInactive.visible = true;
+  });
 
   //--------------------------------------------SCREEN2----------------------------------------
   newsletterScreen2 = new PIXI.Container();
   newsletterScreen2.visible = false;
   app.stage.addChild(newsletterScreen2);
 
-  newsletterhead2 = new PIXI.Sprite.from(app.loader.resources.newsletterhead.texture);
-  intrested=new PIXI.Sprite.from(app.loader.resources.intrested.texture);
+  newsletterhead2 = new PIXI.Sprite.from(
+    app.loader.resources.newsletterhead.texture,
+  );
+  intrested = new PIXI.Sprite.from(app.loader.resources.intrested.texture);
 
-  partnerr=new PIXI.Sprite.from(app.loader.resources.partnerr.texture);
-  partnerInactive=new PIXI.Sprite.from(app.loader.resources.partnerInactive.texture);
+  partnerr = new PIXI.Sprite.from(app.loader.resources.partnerr.texture);
+  partnerInactive = new PIXI.Sprite.from(
+    app.loader.resources.partnerInactive.texture,
+  );
 
-  investorr=new PIXI.Sprite.from(app.loader.resources.investorr.texture);
-  investorInactive=new PIXI.Sprite.from(app.loader.resources.investorInactive.texture);
+  investorr = new PIXI.Sprite.from(app.loader.resources.investorr.texture);
+  investorInactive = new PIXI.Sprite.from(
+    app.loader.resources.investorInactive.texture,
+  );
 
-  developer=new PIXI.Sprite.from(app.loader.resources.developer.texture);
-  developerInactive=new PIXI.Sprite.from(app.loader.resources.developerInactive.texture);
+  developer = new PIXI.Sprite.from(app.loader.resources.developer.texture);
+  developerInactive = new PIXI.Sprite.from(
+    app.loader.resources.developerInactive.texture,
+  );
 
-  player=new PIXI.Sprite.from(app.loader.resources.player.texture);
-  playerInactive=new PIXI.Sprite.from(app.loader.resources.playerInactive.texture)
+  player = new PIXI.Sprite.from(app.loader.resources.player.texture);
+  playerInactive = new PIXI.Sprite.from(
+    app.loader.resources.playerInactive.texture,
+  );
 
-  close2=new PIXI.Sprite.from(app.loader.resources.close.texture);
-  tap=new PIXI.Sprite.from(app.loader.resources.tap.texture);
-  join=new PIXI.Sprite.from(app.loader.resources.join.texture);
+  close2 = new PIXI.Sprite.from(app.loader.resources.close.texture);
+  tap = new PIXI.Sprite.from(app.loader.resources.tap.texture);
+  join = new PIXI.Sprite.from(app.loader.resources.join.texture);
 
-  newsletterhead2.x=app.stage.width/4+200; 
+  newsletterhead2.x = app.stage.width / 4 + 200;
   newsletterhead2.scale.set(2);
-  
-  intrested.y=newsletterhead2.y+200;
-  intrested.x=newsletterhead2.x/2+100;
 
-  partnerr.y=intrested.y+50;
-  partnerr.x=500;
-  partnerr.buttonMode=true;
-  partnerr.interactive=true;
-  partnerInactive.x=partnerr.x;
-  partnerInactive.y=partnerr.y;
-  partnerInactive.buttonMode=true
-  partnerInactive.interactive=true;
-  partnerInactive.visible=false;
-  partnerr.on("pointerdown", function(e){partnerInactive.visible=true;partnerr.visible=false});
-  partnerInactive.on("pointerdown", function(e){partnerInactive.visible=false;partnerr.visible=true});
+  intrested.y = newsletterhead2.y + 200;
+  intrested.x = newsletterhead2.x / 2 + 100;
 
-  investorr.y=intrested.y+50;
-  investorr.x=800;
-  investorr.buttonMode=true;
-  investorr.interactive=true;
-  investorInactive.x=investorr.x;
-  investorInactive.y=investorr.y;
-  investorInactive.buttonMode=true;
-  investorInactive.interactive=true;
-  investorInactive.visible=false;
-  investorr.on("pointerdown", function(e){investorInactive.visible=true;investorr.visible=false});
-  investorInactive.on("pointerdown", function(e){investorInactive.visible=false;investorr.visible=true});
+  partnerr.y = intrested.y + 50;
+  partnerr.x = 500;
+  partnerr.buttonMode = true;
+  partnerr.interactive = true;
+  partnerInactive.x = partnerr.x;
+  partnerInactive.y = partnerr.y;
+  partnerInactive.buttonMode = true;
+  partnerInactive.interactive = true;
+  partnerInactive.visible = false;
+  partnerr.on("pointerdown", function(e) {
+    partnerInactive.visible = true;
+    partnerr.visible = false;
+  });
+  partnerInactive.on("pointerdown", function(e) {
+    partnerInactive.visible = false;
+    partnerr.visible = true;
+  });
 
-  developer.y=intrested.y+50;
-  developer.x=1100;
-  developer.buttonMode=true;
-  developer.interactive=true;
-  developerInactive.x=developer.x;
-  developerInactive.y=developer.y;
-  developerInactive.buttonMode=true;
-  developerInactive.interactive=true;
-  developerInactive.visible=false;
-  developer.on("pointerdown", function(e){developerInactive.visible=true;developer.visible=false});
-  developerInactive.on("pointerdown", function(e){developerInactive.visible=false;developer.visible=true});
+  investorr.y = intrested.y + 50;
+  investorr.x = 800;
+  investorr.buttonMode = true;
+  investorr.interactive = true;
+  investorInactive.x = investorr.x;
+  investorInactive.y = investorr.y;
+  investorInactive.buttonMode = true;
+  investorInactive.interactive = true;
+  investorInactive.visible = false;
+  investorr.on("pointerdown", function(e) {
+    investorInactive.visible = true;
+    investorr.visible = false;
+  });
+  investorInactive.on("pointerdown", function(e) {
+    investorInactive.visible = false;
+    investorr.visible = true;
+  });
 
-  player.y=intrested.y+50;
-  player.x=1400;
-  player.buttonMode=true;
-  player.interactive=true;
-  playerInactive.x=player.x;
-  playerInactive.y=player.y;
-  playerInactive.buttonMode=true;
-  playerInactive.interactive=true;
-  playerInactive.visible=false;
-  player.on("pointerdown", function(e){playerInactive.visible=true;player.visible=false});
-  playerInactive.on("pointerdown", function(e){playerInactive.visible=false;player.visible=true});
+  developer.y = intrested.y + 50;
+  developer.x = 1100;
+  developer.buttonMode = true;
+  developer.interactive = true;
+  developerInactive.x = developer.x;
+  developerInactive.y = developer.y;
+  developerInactive.buttonMode = true;
+  developerInactive.interactive = true;
+  developerInactive.visible = false;
+  developer.on("pointerdown", function(e) {
+    developerInactive.visible = true;
+    developer.visible = false;
+  });
+  developerInactive.on("pointerdown", function(e) {
+    developerInactive.visible = false;
+    developer.visible = true;
+  });
 
-  tap.x=intrested.x-300;
-  tap.y=player.y+300;
+  player.y = intrested.y + 50;
+  player.x = 1400;
+  player.buttonMode = true;
+  player.interactive = true;
+  playerInactive.x = player.x;
+  playerInactive.y = player.y;
+  playerInactive.buttonMode = true;
+  playerInactive.interactive = true;
+  playerInactive.visible = false;
+  player.on("pointerdown", function(e) {
+    playerInactive.visible = true;
+    player.visible = false;
+  });
+  playerInactive.on("pointerdown", function(e) {
+    playerInactive.visible = false;
+    player.visible = true;
+  });
 
-  join.x=app.stage.width/4+350;
-  join.y=tap.y+150;
-  join.buttonMode=true;
-  join.interactive=true;
+  tap.x = intrested.x - 300;
+  tap.y = player.y + 300;
 
-  close2.x=app.stage.width-30;
-  close2.y=newsletterhead.y;
-  close2.buttonMode=true;
-  close2.interactive=true;
+  join.x = app.stage.width / 4 + 350;
+  join.y = tap.y + 150;
+  join.buttonMode = true;
+  join.interactive = true;
 
-  newsletterScreen2.addChild(newsletterhead2,intrested,partnerr,developer,investorr,player,close2,tap,join,partnerInactive,developerInactive,investorInactive,playerInactive);
+  close2.x = app.stage.width - 30;
+  close2.y = newsletterhead.y;
+  close2.buttonMode = true;
+  close2.interactive = true;
 
-  newsletter.on("pointerdown", function(e){
+  newsletterScreen2.addChild(
+    newsletterhead2,
+    intrested,
+    partnerr,
+    developer,
+    investorr,
+    player,
+    close2,
+    tap,
+    join,
+    partnerInactive,
+    developerInactive,
+    investorInactive,
+    playerInactive,
+  );
+
+  newsletter.on("pointerdown", function(e) {
     hideAllContent(app);
-    newsletterScreen.visible=true;
-    visionIcon.visible=false;
-    solutionIcon.visible=false;
-    storyIcon.visible=false;
-    milestonesIcon.visible=false;
-    joinUsIcon.visible=false;
-    joinusFrame.visible=false;
-    joinUsText.visible=false; 
+    renderMobileOutline(false);
+    newsletterScreen.visible = true;
+    visionIcon.visible = false;
+    solutionIcon.visible = false;
+    storyIcon.visible = false;
+    milestonesIcon.visible = false;
+    joinUsIcon.visible = false;
+    joinusFrame.visible = false;
+    joinUsText.visible = false;
   });
 
-  continuee.on("pointerdown", function(e){
-    newsletterScreen.visible=false;
-    newsletterScreen2.visible=true;
-  })
-
-  close.on("pointerdown", function(e){
-    newsletterScreen.visible=false;
-    visionIcon.visible=true;
-    solutionIcon.visible=true;
-    storyIcon.visible=true;
-    milestonesIcon.visible=true;
-    joinUsIcon.visible=true;
-    joinusFrame.visible=true;
-    joinUsText.visible=true;
-    renderScreen(app,"joinus");
+  continuee.on("pointerdown", function(e) {
+    newsletterScreen.visible = false;
+    newsletterScreen2.visible = true;
   });
 
-  close2.on("pointerdown", function(e){
-    newsletterScreen2.visible=false;
-    visionIcon.visible=true;
-    solutionIcon.visible=true;
-    storyIcon.visible=true;
-    milestonesIcon.visible=true;
-    joinUsIcon.visible=true;
-    joinusFrame.visible=true;
-    joinUsText.visible=true;
-    renderScreen(app,"joinus"); 
+  close.on("pointerdown", function(e) {
+    newsletterScreen.visible = false;
+    visionIcon.visible = true;
+    solutionIcon.visible = true;
+    storyIcon.visible = true;
+    milestonesIcon.visible = true;
+    joinUsIcon.visible = true;
+    joinusFrame.visible = true;
+    joinUsText.visible = true;
+    renderScreen(app, "joinus");
+  });
+
+  close2.on("pointerdown", function(e) {
+    newsletterScreen2.visible = false;
+    visionIcon.visible = true;
+    solutionIcon.visible = true;
+    storyIcon.visible = true;
+    milestonesIcon.visible = true;
+    joinUsIcon.visible = true;
+    joinusFrame.visible = true;
+    renderMobileOutline(true);
+    renderScreen(app, "joinus");
   });
 }
 function hideAllContent(app) {
-  app.view.height = 1200;
+  //app.view.height = 1200;
   visionScreen.visible = false;
   solutionPlayerScreen.visible = false;
   solutionBuilderScreen.visible = false;
@@ -403,9 +487,10 @@ function renderScreen(app, screen) {
       solutionPlayerScreen.visible = true;
       break;
     case "story":
+      app.view.height = 7000;
       hideAllContent(app);
       storyScreen.visible = true;
-      app.view.height = 2000;
+
       break;
     case "milestones":
       hideAllContent(app);
@@ -413,8 +498,9 @@ function renderScreen(app, screen) {
       break;
     case "joinus":
       hideAllContent(app);
+      renderMobileOutline(true);
       joinusScreen.visible = true;
       break;
   }
-  app.view.height = 3000;
+  app.view.height = 7000;
 }
