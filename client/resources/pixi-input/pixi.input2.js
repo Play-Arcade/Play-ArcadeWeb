@@ -210,6 +210,7 @@
 		// set dimensions
 		can.width = outerWidth;
 		can.height = outerHeight;
+		
 
 		// setup the box shadow
 		ctx.shadowOffsetX = data.boxShadowData.x;
@@ -567,9 +568,11 @@
 
 		setInputElementPosition: function(){
 			var canvasRect = this.lastRendererView.getBoundingClientRect();
+			console.log(canvasRect);
 			var inputObjectRect = this.getBounds();
-			this.inputElement.style.top = (canvasRect.top + inputObjectRect.y + this.data.shadowTop) + "px";
-			this.inputElement.style.left = (canvasRect.left + inputObjectRect.x + this.data.shadowLeft) + "px";
+			console.log(inputObjectRect);
+			this.inputElement.style.top = (inputObjectRect.y + this.data.shadowTop) + "px";
+			this.inputElement.style.left = (inputObjectRect.x + this.data.shadowLeft) + "px";
 		},
 
 		blur: function()

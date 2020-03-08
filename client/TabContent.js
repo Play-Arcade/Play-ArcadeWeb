@@ -238,29 +238,7 @@ function renderTabContent(app) {
   close.buttonMode=true;
   close.interactive=true;
 
-  var input = new PIXI.Input({
-		type: "text",
-		value: "",
-		placeholder: "your name",
-		placeholderColor: "#ccc",
-		readonly: false,
-		maxlength: null,
-		onfocus: function(){},
-		onblur: function(){},
-		oninput: function(){},
-		width: 300,
-		height: 50,
-		padding: 20,
-		borderColor: "#f88",
-		borderWidth: 3,
-		borderRadius: 5,
-		backgroundColor: "#ffffff",
-    innerShadow: "0px 0px 10px rgba(0, 0, 0, 0.4)"
-	});
-  input.x = app.stage.width/4;
-  input.y = app.stage.width/4;
-
-  newsletterScreen.addChild(newsletterhead,newslettertext1,newslettertext2,continuee,iam,close,proInactive,studentActive,proActive,studentInactive, input);
+  newsletterScreen.addChild(newsletterhead,newslettertext1,newslettertext2,continuee,iam,close,proInactive,studentActive,proActive,studentInactive);
 
   studentActive.on("pointerdown", function(e){studentInactive.visible=false;studentActive.visible=true;proInactive.visible=true;});
   studentInactive.on("pointerdown", function(e){studentInactive.visible=false;studentActive.visible=true;proInactive.visible=true;});
@@ -364,7 +342,6 @@ function renderTabContent(app) {
 
   newsletter.on("pointerdown", function(e){
     hideAllContent(app);
-    newsletterScreen.visible=true;
     visionIcon.visible=false;
     solutionIcon.visible=false;
     storyIcon.visible=false;
@@ -373,14 +350,17 @@ function renderTabContent(app) {
     joinusFrame.visible=false;
     joinUsText.visible=false;
     newsletterScreen.visible=true; 
+    showInputs(app);
   });
 
   continuee.on("pointerdown", function(e){
     newsletterScreen.visible=false;
     newsletterScreen2.visible=true;
+    submitInputs();
   })
 
   close.on("pointerdown", function(e){
+    removeInputs();
     newsletterScreen.visible=false;
     visionIcon.visible=true;
     solutionIcon.visible=true;
@@ -440,3 +420,136 @@ function renderScreen(app, screen) {
   }
   app.view.height = 3000;
 }
+
+// on selection of newsletter screen, show input fields
+function showInputs(app) {
+  nodeone = document.createElement('input');
+  nodetwo = document.createElement('input');
+  nodeone.id = "inputone";
+  nodetwo.id = "inputtwo";
+
+  // resize constants
+  inputoneValues = {
+    width: 0.15511062,
+    height: 0.018070307,
+    left: 0.19079304,
+    top: 0.05455285
+  }
+
+  inputtwoValues = {
+    width: 0.25734523,
+    height: 0.018070307,
+    left: 0.19966713,
+    top: 0.16455285
+  }
+
+  // calculate necessary properties for input one
+  widthValue = app.renderer.view.clientWidth * inputoneValues.width;
+  heightValue = app.renderer.view.clientWidth * inputoneValues.height;
+  leftValue = app.renderer.view.clientWidth * inputoneValues.left;
+  topValue = 72 + app.renderer.view.clientWidth * inputoneValues.top;
+
+  // add attributes to node one
+  nodeone.placeholder = "(your name here)";
+
+  // add values to node one css
+  nodeone.style.cssText = "position: absolute; left: " + leftValue + "px; top: " + topValue + "px;"
+  + "width: " + widthValue + "; height: " + heightValue + "; text-align: center;" +
+  "border-color: transparent; background-color: #ddd";
+
+  // calculate necessary properties for input two
+  widthValue = app.renderer.view.clientWidth * inputtwoValues.width;
+  heightValue = app.renderer.view.clientWidth * inputtwoValues.height;
+  leftValue = app.renderer.view.clientWidth * inputtwoValues.left;
+  topValue = 72 + app.renderer.view.clientWidth * inputtwoValues.top;
+
+  // add attributes to node
+  nodetwo.placeholder = "(your email here)";
+
+  // add values to css
+  nodetwo.style.cssText = "position: absolute; left: " + leftValue + "px; top: " + topValue + "px;"
+  + "width: " + widthValue + "; height: " + heightValue + "; text-align: center;" + 
+  "border-color: transparent; background-color: #ddd";
+
+  // make form resizable
+  window.onresize = function() {
+    // resize input one
+    document.getElementById('inputone').style.width = 
+      app.renderer.view.clientWidth * inputoneValues.width;
+    document.getElementById('inputone').style.height = 
+      app.renderer.view.clientWidth * inputoneValues.height;
+    document.getElementById('inputone').style.left = 
+      app.renderer.view.clientWidth * inputoneValues.left;
+    document.getElementById('inputone').style.top = 
+      72 + app.renderer.view.clientWidth * inputoneValues.top;
+
+    // resize input two
+    document.getElementById('inputtwo').style.width = 
+      app.renderer.view.clientWidth * inputtwoValues.width;
+    document.getElementById('inputtwo').style.height = 
+      app.renderer.view.clientWidth * inputtwoValues.height;
+    document.getElementById('inputtwo').style.left = 
+      app.renderer.view.clientWidth * inputtwoValues.left;
+    document.getElementById('inputtwo').style.top = 
+      72 + app.renderer.view.clientWidth * inputtwoValues.top;
+  };
+
+  // add nodes to body
+  document.getElementById("canvas-container").appendChild(nodeone);
+  document.getElementById("canvas-container").appendChild(nodetwo);
+} // showInput
+
+// removes the input boxes on page cancel and remove resize function
+function removeInputs() {
+  document.getElementById("canvas-container").removeChild(
+    document.getElementById("inputone"));
+  document.getElementById("canvas-container").removeChild(
+    document.getElementById("inputtwo"));
+
+  window.onresize = function(){};
+} // removeInputs
+
+// submit input values to db and remove forms
+function submitInputs() {
+  // get values from forms
+  inputoneValue = document.getElementById('inputone').value;
+  inputtwoValue = document.getElementById('inputtwo').value;
+
+  console.log(inputoneValue + ", " + inputtwoValue);
+
+  // remove forms
+  document.getElementById("canvas-container").removeChild(
+    document.getElementById("inputone"));
+  document.getElementById("canvas-container").removeChild(
+    document.getElementById("inputtwo"));
+
+    // reset window
+    window.onresize = function(){};
+} // submitInputs
+
+/*
+var input = new PIXI.Input({
+  type: "text",
+  value: "",
+  placeholder: "(your name here)",
+  placeholderColor: "#000",
+  readonly: false,
+  maxlength: null,
+  onfocus: function(){},
+  onblur: function(){},
+  oninput: function(){},
+  //width: 265,
+  width: 475,
+  height: 30,
+  padding: 10,
+  borderColor: "#000", 
+  borderWidth: 3,
+  borderRadius: 5,
+  backgroundColor: "#ffffff",
+  innerShadow: "0px 0px 10px rgba(0, 0, 0, 0)"
+});
+//input.x = 275;
+//input.y = 90;
+input.x = 290;
+input.y = 315;
+*/
