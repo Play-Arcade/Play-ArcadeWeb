@@ -12,7 +12,7 @@ const MeetingSchema = new Schema({
   Name: { type: String, required: true },
   Email: { type: String, required: true },
 
-  //Id to keep track of a perosn across data forms
+  //Id to keep track of a person across data forms, use ID from generic form
   Id: { type: String, required: true },
   Meeting_Type: { type: String, enum: ["Call", "In-Person"], required: true },
   Meeting_Date: { type: Date, required: true },

@@ -16,9 +16,6 @@ const GenericFormSchema = new Schema({
   Name: { type: String, required: true },
   Email: { type: String, required: true },
 
-  //Id to keep track of a perosn across data forms
-  Id: { type: String, required: true },
-
   //true for professional, false for student
   Professional_student: { type: Boolean, required: true, default: false },
   Related_Org: { type: String, required: true },

@@ -1,124 +1,88 @@
 const express = require("express");
 const router = express.Router();
-const genericForm = require("../models/generic");
-const devForm = require("../models/dev");
-const investorForm = require("../models/investor");
-const partnerForm = require("../models/partner");
-const playerForm = require("../models/player");
-const newsletterForm = require("../models/newsletter");
-const crowdfundForm = require("../models/crowdfund");
+const genericForm = require("../models/forms/generic");
 
 router.post("/newgenericform", (req, res) => {
-  const form = req.body;
+  const {
+    name,
+    email,
+    professional_student,
+    related_Org,
+    connection_Type,
+    newsletter,
+  } = req.query;
 
-  const newForm = new genericForm({
-    Name: form.Name,
-    Email: form.Email,
-    Professional_student: form.Professional_student,
-    Related_Org: form.Related_Org,
-    Is_Developer: form.Is_Developer,
-    Is_Investor: form.Is_Investor,
-    Is_Partner: form.Is_Partner,
-    Is_Player: form.Is_Player,
-    Newsletter: form.Newsletter,
-  });
+  const genericData = {
+    Name: name,
+    Email: email,
+    Professional_student: professional_student,
+    Related_Org: related_Org,
+    Connection_Type: connection_Type,
+    Newsletter: newsletter,
+  };
 
-  save(newForm);
-});
-
-router.post("/newdevform", (req, res) => {
-  const form = req.body;
-
-  const newForm = new devForm({
-    Name: form.Name,
-    Email: form.Email,
-    Professional: form.Professional,
-    Student: form.Student,
-    Related_Org: form.Related_Org,
-    Experience: form.Experience,
-    Stack: form.Stack,
-    Why_Build: form.Why_Build,
-    Want_Build: form.Want_Build,
-    Game_Jam: form.Game_Jam,
-    Game_Jam_details: form.Game_Jam_Details,
-    Reason_no_game_jam: form.Reason_no_game_jam,
-    Classification: form.Classification,
-  });
-
-  save(newForm);
-});
-
-router.post("/newcrowdfundform", (req, res) => {
-  const form = req.body;
-  const newForm = new crowdfundForm({
-    Name: form.Name,
-    Email: form.Email,
-  });
-});
-
-router.post("/newinvestorform", (req, res) => {
-  const form = req.body;
-
-  const newForm = new investorForm({
-    Name: form.Name,
-    Email: form.Email,
-    Professional_student: form.Professional_student,
-    Related_Org: form.Related_Org,
-    Investor_Type: form.Investor_Type,
-    Institution_Name: form.Institution_Name,
-    Call_Date: form.Call_Date,
-    Call_Time: form.Call_Time,
-    Deck_Req: form.Deck_Req,
-  });
-
-  save(newForm);
-});
-
-router.post("/newpartnerform", (req, res) => {
-  const form = req.body;
-
-  const newForm = new partnerForm({
-    Name: form.Name,
-    Email: form.Email,
-    Professional_student: form.Professional_student,
-    Related_Org: form.Related_Org,
-    Partner_Type: form.Partner_Type,
-    Intended_Partnership: form.Intended_Partnership,
-    InPerson: form.InPerson,
-    OnCall: form.OnCall,
-    Date: form.Date,
-    Time: form.Time,
-  });
-
-  save(newForm);
-});
-
-router.post("/newnewsletterform", (req, res) => {
-  const form = req.body;
-
-  const newForm = new newsletterForm({
-    Name: form.Name,
-    Email: form.Email,
-    Professional_student: form.Professional_student,
-    Related_Org: form.Related_Org,
-  });
-
-  save(newForm);
-});
-
-router.post("/newplayerform", (req, res) => {
-  const form = req.body;
-
-  const newForm = new scheduleForm({
-    Name: form.Name,
-    Email: form.Email,
-    Professional_student: form.Professional_student,
-    Related_Org: form.Related_Org,
-    Account_Name: form.Account_Name,
-    Fav_Game_Type: form.Fav_Game_Type,
-    Devices: form.Devices,
-    Reason_for_play: form.Reason_for_play,
-  });
+  if (connection_Type === "Developer") {
+    const {
+      project_repo_link,
+      experience,
+      developer_type,
+      stack,
+      why_build,
+      want_build_type,
+      been_to_game_jam,
+      game_jam_details,
+      reason_no_game_jam,
+      classification,
+    } = req.query;
+    newForm = new genericForm(
+      Object.assign({}, genericData, {
+        Project_Repo_Link: project_repo_link,
+        Experience: experience,
+        Developer_Type: developer_type,
+        Stack: stack,
+        Why_Build: why_build,
+        Want_Build_Type: want_build_type,
+        Been_To_Game_Jam: been_to_game_jam,
+        Game_Jam_details: game_jam_details,
+        Reason_no_game_jam: reason_no_game_jam,
+        Classification: classification,
+      }),
+    );
+  } else if (connection_Type === "Investor") {
+    const { institution_name, investor_type, deck_req } = req.query;
+    newForm = new genericForm(
+      Object.assign({}, genericData, {
+        Investor_Type: investor_type,
+        //only for investor type Grant or VC
+        Institution_Name: institution_name,
+        Deck_Req: deck_req,
+      }),
+    );
+  } else if (connection_Type === "Partner") {
+    const { partner_type, intended_partnership } = req.query;
+    newForm = new genericForm(
+      Object.assign({}, genericData, {
+        Partner_Type: partner_type,
+        Intended_Partnership: intended_partnership,
+      }),
+    );
+  } else if (connection_Type === "Player") {
+    const {
+      account_name,
+      fav_game_type,
+      devices,
+      reasons_for_play,
+    } = req.query;
+    newForm = new genericForm(
+      Object.assign({}, genericData, {
+        Account_Name: account_name,
+        Fav_Game_Type: fav_game_type,
+        Devices: devices,
+        Reasons_for_play: reasons_for_play,
+      }),
+    );
+  } else {
+  }
 
   save(newForm);
 });
