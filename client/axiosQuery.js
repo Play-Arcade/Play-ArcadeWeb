@@ -1,6 +1,7 @@
 import axios from "axios";
 
 // declaring temp vars to represent each field
+// actual field will depend on frontend forms
 // later these will each point to a form 
 // (or the value can be directly replaced with a form in the query)
 var id, name, email, isProfessional, isStudent, occupation, yearsExperience,
@@ -9,10 +10,9 @@ var id, name, email, isProfessional, isStudent, occupation, yearsExperience,
 // POST request
 axios({
     method: "post",
-    // url needs to be replaced with actual url
-    url: "mongodb/url",
-    data: {
-        id: id.value,
+    url: process.env.ServerAPI + "/form_api/newgenericform",
+    //temporary params
+    params: {
         name: name.value,
         email: email.value,
         isProfessional: isProfessional.value,
