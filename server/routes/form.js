@@ -87,53 +87,51 @@ router.post("/newgenericform", (req, res) => {
     console.error("error, type of connection invalid", e);
     res.sendStatus(500).json("error, type of connection invalid");
   }
-  let formID = null;
   newForm.save(e, doc => {
     if (e) {
       console.error("error while saving form to database", e);
       res.sendStatus(500);
     } else {
+      const formID = doc.id;
+      //Meeting schedule if there is one
+      if ("meeting_type" in req.query) {
+        const { meeting_type } = req.query;
+        let newMeeting = null;
+        if (meeting_type === "Call") {
+          const { meeting_date } = req.query;
+          newMeeting = new meeting({
+            Name: name,
+            Email: email,
+            Id: formID,
+            Meeting_Type: meeting_type,
+            Meeting_Date: meeting_date,
+          });
+        } else if (meeting_type === "In-Person") {
+          const { meeting_date, meeting_location } = req.query;
+          newMeeting = new meeting({
+            Name: name,
+            Email: email,
+            Id: formID,
+            Meeting_Type: meeting_type,
+            Meeting_Date: meeting_date,
+            Meeting_Location: meeting_location,
+          });
+        } else {
+          console.error("error, meeting type invalid", e);
+          res.sendStatus(500).json("error, type of connection invalid");
+        }
+        newMeeting.save(e => {
+          if (e) {
+            console.error("error while saving meeting to database", e);
+            res.sendStatus(500);
+          } else {
+            res.json("Submission success!");
+          }
+        });
+      }
       res.json("Submission success!");
     }
-    formID = doc.id;
   });
-
-  //Meeting schedule if there is one
-  if ("meeting_type" in req.query) {
-    const { meeting_type } = req.query;
-    let newMeeting = null;
-    if (meeting_type === "Call") {
-      const { meeting_date } = req.query;
-      newMeeting = new meeting({
-        Name: name,
-        Email: email,
-        Id: formID,
-        Meeting_Type: meeting_type,
-        Meeting_Date: meeting_date,
-      });
-    } else if (meeting_type === "In-Person") {
-      const { meeting_date, meeting_location } = req.query;
-      newMeeting = new meeting({
-        Name: name,
-        Email: email,
-        Id: formID,
-        Meeting_Type: meeting_type,
-        Meeting_Date: meeting_date,
-        Meeting_Location: meeting_location,
-      });
-    } else {
-      console.error("error, meeting type invalid", e);
-      res.sendStatus(500).json("error, type of connection invalid");
-    }
-    newMeeting.save(e => {
-      if (e) {
-        console.error("error while saving meeting to database", e);
-        res.sendStatus(500);
-      } else {
-        res.json("Submission success!");
-      }
-    });
-  }
 });
 
 module.exports = router;
