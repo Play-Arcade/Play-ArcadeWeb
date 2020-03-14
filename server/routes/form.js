@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const genericForm = require("../models/forms/generic");
+const meeting = require("../models/meeting");
 
 router.post("/newgenericform", (req, res) => {
   const {
@@ -8,7 +9,7 @@ router.post("/newgenericform", (req, res) => {
     email,
     professional_student,
     related_Org,
-    connection_Type,
+    connection_type,
     newsletter,
   } = req.query;
 
@@ -17,9 +18,10 @@ router.post("/newgenericform", (req, res) => {
     Email: email,
     Professional_student: professional_student,
     Related_Org: related_Org,
-    Connection_Type: connection_Type,
+    Connection_Type: connection_type,
     Newsletter: newsletter,
   };
+  let newForm = null;
 
   if (connection_Type === "Developer") {
     const {
@@ -82,19 +84,56 @@ router.post("/newgenericform", (req, res) => {
       }),
     );
   } else {
+    console.error("error, type of connection invalid", e);
+    res.sendStatus(500).json("error, type of connection invalid");
   }
-
-  save(newForm);
-});
-
-function save(newForm) {
-  newForm.save(e => {
+  let formID = null;
+  newForm.save(e, doc => {
     if (e) {
       console.error("error while saving form to database", e);
       res.sendStatus(500);
     } else {
       res.json("Submission success!");
     }
+    formID = doc.id;
   });
-}
+
+  //Meeting schedule if there is one
+  if ("meeting_type" in req.query) {
+    const { meeting_type } = req.query;
+    let newMeeting = null;
+    if (meeting_type === "Call") {
+      const { meeting_date } = req.query;
+      newMeeting = new meeting({
+        Name: name,
+        Email: email,
+        Id: formID,
+        Meeting_Type: meeting_type,
+        Meeting_Date: meeting_date,
+      });
+    } else if (meeting_type === "In-Person") {
+      const { meeting_date, meeting_location } = req.query;
+      newMeeting = new meeting({
+        Name: name,
+        Email: email,
+        Id: formID,
+        Meeting_Type: meeting_type,
+        Meeting_Date: meeting_date,
+        Meeting_Location: meeting_location,
+      });
+    } else {
+      console.error("error, meeting type invalid", e);
+      res.sendStatus(500).json("error, type of connection invalid");
+    }
+    newMeeting.save(e => {
+      if (e) {
+        console.error("error while saving meeting to database", e);
+        res.sendStatus(500);
+      } else {
+        res.json("Submission success!");
+      }
+    });
+  }
+});
+
 module.exports = router;
