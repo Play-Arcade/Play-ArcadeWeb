@@ -15,7 +15,7 @@
     "node": "10.15.1"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.18.2",
